@@ -57,7 +57,6 @@
 }
 
 .contact {
-  border: 2px solid red;
   height: 40vh;
   display: flex;
   flex-direction: column;
@@ -154,11 +153,11 @@
   opacity: 0.6;
 }
 
-.link-stle a, footer.vertical .social-icons a, footer.horizontal a {
+.link-stle a, footer.middle a, footer.vertical .social-icons a, footer.horizontal a {
   padding: 1rem;
   transition: all 1s;
 }
-.link-stle a:hover, footer.vertical .social-icons a:hover, footer.horizontal a:hover {
+.link-stle a:hover, footer.middle a:hover, footer.vertical .social-icons a:hover, footer.horizontal a:hover {
   color: #ff652f;
 }
 
@@ -188,6 +187,16 @@ footer.vertical .copyright {
   bottom: 1rem;
   right: 3rem;
   transform: rotate(90deg) translate(-3rem, -5rem);
+}
+
+footer.middle {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .nav {
