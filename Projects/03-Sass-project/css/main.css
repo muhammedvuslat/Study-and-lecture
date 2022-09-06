@@ -6,7 +6,6 @@
 }
 
 .about-bgImg-container {
-  border: 2px solid red;
   height: 50vh;
   width: 100%;
   background: linear-gradient(to right, rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.3)), url("../img/model-1.jpg");
@@ -18,6 +17,32 @@
 }
 .about-bgImg-container .about__bio-image {
   text-align: center;
+}
+.about-bgImg-container .about__bio-image h2 {
+  font-size: 3rem;
+  color: #ff652f;
+}
+.about-bgImg-container .about__bio-image p {
+  font-size: 1.2rem;
+  margin: 2rem;
+}
+
+.about__container {
+  width: 70vw;
+  margin: 2rem auto;
+}
+.about .about__job {
+  margin: 1rem;
+  background: #414141;
+  padding: 1rem;
+  border-bottom: 5px solid #ff652f;
+}
+.about .about__job h2,
+.about .about__job h3 {
+  margin: 0.5rem 0;
+}
+.about .about__job h6 {
+  margin: 0.3rem;
 }
 
 .home-bgImg-container {
@@ -46,21 +71,40 @@
   font-weight: 700;
 }
 
-.link-stle a, footer.horizontal a {
+.link-stle a, footer.vertical .social-icons a, footer.horizontal a {
   padding: 1rem;
   transition: all 1s;
 }
-.link-stle a:hover, footer.horizontal a:hover {
+.link-stle a:hover, footer.vertical .social-icons a:hover, footer.horizontal a:hover {
   color: #ff652f;
 }
 
 footer.horizontal {
-  border: 2px solid red;
   height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding: 1rem;
+}
+
+footer.vertical {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+footer.vertical .social-icons {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 1rem;
+}
+footer.vertical .copyright {
+  position: fixed;
+  bottom: 1rem;
+  right: 3rem;
+  transform: rotate(90deg) translate(-3rem, -5rem);
 }
 
 .nav {
