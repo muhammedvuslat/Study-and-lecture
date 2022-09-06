@@ -5,6 +5,21 @@
   box-sizing: border-box;
 }
 
+.about-bgImg-container {
+  border: 2px solid red;
+  height: 50vh;
+  width: 100%;
+  background: linear-gradient(to right, rgba(39, 39, 39, 0.9), rgba(39, 39, 39, 0.3)), url("../img/model-1.jpg");
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.about-bgImg-container .about__bio-image {
+  text-align: center;
+}
+
 .home-bgImg-container {
   height: 100vh;
   width: 100%;

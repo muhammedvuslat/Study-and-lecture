@@ -1,0 +1,14 @@
+//*****************************************************
+//*   ABOUT PAGE
+//*****************************************************
+
+.about-bgImg-container {
+  border: 2px solid red;
+  @include bgImage(50vh, $main-bgImage-path);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  .about__bio-image {
+    text-align: center;
+  }
+}
