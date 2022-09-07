@@ -10,27 +10,68 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
-</head>
-<body>
-  <div class="container  text-dark text-center">
-    <h1>GRID</h1>
-    <div class="row">
-        <div class="col-4 bg-warning">4</div>
-        <div class="col-4 bg-info">4</div>
-        <div class="col-4 bg-secondary">4</div>
-
-
-        <div class="col-6 bg-primary">6</div>
+  </head>
+  <body>
+    <div class="container text-dark text-center">
+      <h1>GRID</h1>
+      <div class="row">
         <div class="col-6 bg-success">6</div>
+        <div class="col-6 bg-danger">6</div>
 
-        <div class="col-3 bg-success">6</div>
-        <div class="col-2 bg-warning">6</div>
+        <div class="col-3 bg-secondary">3</div>
+        <div class="col-9 bg-warning">9</div>
 
+        <div class="col-3 bg-secondary">3</div>
+        <div class="col-6 bg-info">6</div>
+        <div class="col-3 bg-danger">3</div>
+
+        <div class="col-4 bg-info">4</div>
+        <div class="col-4 bg-danger">4</div>
+        <div class="col-4 bg-info">4</div>
+
+        <div class="col-4 bg-danger">4</div>
+        <div class="col-4 bg-info">4</div>
+        <!-- divde boşta kalan alanı doldurmadan alt kolona inmek için ayrı div içi div yap -->
         <div class="row">
-            <div class="col-4 bg-secondary">4</div>
+          <div class="col-4 bg-warning">4</div>
         </div>
-       
-        
+        <div class="row justify-content-center">
+          <div class="col-4 bg-warning">4</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <h1>D_Flex Aling</h1>
+    <div
+      class="container border border-danger text-light display-6 text-center"
+    >
+      <div class="row justify-content-center">
+        <div class="col-4 bg-success">center</div>
+        <div class="col-3 bg-warning">center</div>
+      </div>
+      <div class="row justify-content-evenly">
+        <div class="col-3 bg-secondary">evenly</div>
+        <div class="col-4 bg-info">evenly</div>
+      </div>
+    </div>
+
+    <hr />
+    <h1 class="text-center">BreakPoint</h1>
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 bg-danger">1</div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 bg-info">2</div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 bg-secondary">3</div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 bg-success">4</div>
+      </div>
+    </div>
+
+    <hr />
+    <h1 class="text-center">Display Example</h1>
+    <div class="container text-center">
+      <div class="bg-danger d-sm-none">Sadece XS</div>
+      <div class="bg-success d-none d-sm-block">Sadece XS Hariç</div>
+      <div class="bg-secondary d-none d-md-block d-lg-none">Sadece MD</div>
     </div>
 
     <!--Script bootstrap link-->
