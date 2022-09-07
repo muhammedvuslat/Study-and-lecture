@@ -1,0 +1,51 @@
+*{
+    border: 2px solid black;
+    text-align: center;border-radius: 10px;
+   
+}
+
+
+header{
+    background-color: seagreen;
+    margin-top: 10px;
+}
+
+main{
+    background-color: skyblue;
+    padding: 5px;
+    border: none;
+    
+    
+}
+
+aside{
+    background-color: darkorange;
+    width: 25%;
+    height: 300px;
+    float: left;
+    margin-left: 20px;
+}    
+article{
+    background-color: greenyellow;
+    width: 70%;
+    height: 300px;
+    float: left;
+}
+    
+footer{
+    background-color: coral;
+}
+/* .clear{
+    clear: both;
+    border: none;
+} */
+
+/*Main alanı yani mavi alan için olan hatayı div clear bir yöntem*/
+/*Diğer bir yöntem ise main e class=clearfix açıp*/
+
+.clearfix::after{
+    content: '';
+    clear: both;
+    display: block;
+}
+    

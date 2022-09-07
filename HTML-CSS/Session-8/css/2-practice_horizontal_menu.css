@@ -1,0 +1,61 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+html{
+    font-size: 20px;
+}
+
+nav.hortizonal-menu ul{
+    list-style-type: none;
+    text-align: center;
+    
+}
+nav.hortizonal-menu a{
+    text-decoration: none;
+    color: black;
+}
+
+nav.hortizonal-menu ul li{
+    display: inline-block;
+    background-color: wheat;
+    padding: 1rem 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    width: 3rem;
+    border-radius: 1rem;
+    
+
+}
+
+nav.hortizonal-menu ul li:hover{
+    background-color: brown;
+    cursor: pointer;
+}
+
+nav.hortizonal-menu ul li:hover a{
+    color: white;
+}
+
+
+/***********Dropdown Menu ************/
+nav.dmenu{
+    width: 7.5rem;
+}
+nav.dmenu ul{
+    display: none;
+}
+
+nav.dmenu .fa-bars:active{
+    opacity: 0.8;
+    color: rgb(180, 163, 132);
+}
+nav.dmenu:hover ul{
+    display: block;
+    
+    
+}
+
+
+
+
+

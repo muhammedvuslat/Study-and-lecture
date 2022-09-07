@@ -1,0 +1,47 @@
+body{
+    background-color: orange;
+}
+h2{
+    text-align: center;
+}
+
+#par1{
+    color: blue;
+    text-align: center;
+    text-transform: capitalize;
+    column-count: 3;
+    column-rule: 3px solid blue;
+    
+}
+
+#par2{
+    color: rgba(255, 0, 0, 1);
+    text-align: right;
+    direction: rtl; 
+    text-shadow: 3px 3px 5px red;
+    
+    
+}
+
+#par3{
+    color: #35991a;
+    text-align: justify;
+    text-decoration: line-through dashed red 2px;
+}
+
+#par4{
+    color: hsl(190, 100%, 50%);
+    text-decoration: underline ;
+    text-indent: 32px;
+}
+
+#par5{
+    text-transform: uppercase;
+    font-family: 'Yellowtail', cursive;
+    
+}
+
+#span1{
+    color: fuchsia;
+    text-decoration: overline wavy blue;
+}

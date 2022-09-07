@@ -1,0 +1,50 @@
+ul{
+    /* padding-left: 10px; */
+    /* list-style-type: none; */ /* standart gelen list simgesini geçersiz kılar*/
+}
+
+.item{
+    /* list-style-type:georgian; */
+    /* list-style-position:outside; */
+    /* position simgenin neresinde olacağına karar verir*/
+    /* list-style-type: "\2742" ; */
+    list-style-image:url(./img/rocket.png);
+
+
+}
+
+li::before{ /* li::before liden öncekileri style etmemizi sağlar*/
+    /* content: "\2764"; */
+    /* color:salmon; */
+    /* padding-right: 10px; */
+}
+
+ol{
+    list-style-type: none;
+    margin:5px;
+    padding: 5px;
+}
+
+ol li{
+    border: 1px solid darkorange;
+    border-radius: 25px;
+    margin: 10px;
+    padding-left: 1rem;
+    background-color: rgb(0, 89, 255);
+    border-left: 7px solid brown;
+    color: yellowgreen;
+    width: 200px;
+    
+}
+
+ol li:hover{
+    background-color: brown;
+    color: rgb(9, 85, 224);
+    border-left: none;
+    border-right: 10px solid darkorange;
+    font-size: large;
+}
+
+ol li::before{
+    content: "\✔";
+}

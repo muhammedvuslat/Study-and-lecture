@@ -1,0 +1,54 @@
+html{
+    /* font-size: 30px; */
+    /*hmtl çekirdeğinde font size belirtilir default olarak benimseyecektir*/
+}
+*{
+    margin: 0;
+}
+
+body{
+    height: 100vh;
+    
+}
+.abs{
+    background-color: aqua;
+    width: 5cm;
+
+}
+
+.div2{
+    background-color: chocolate;
+    width: 50%;
+    height: 50%;
+}
+.div3{
+    background-color: yellow;
+    width: 50%;
+    height: 50vh;
+}
+
+.div4{
+    background-color: darkmagenta;
+    width: 50vw;
+}
+/*em ibarasini kullanırken bir üst divdeki px in katını alarak ilerler 0.5em olurasada bölümünü yapıp yarısı kadarını alacaktır */
+.div5{
+    font-size: 1em; /*16px*/
+    
+}
+.div6{
+    font-size: 2em;/*32px*/
+}
+.div7{
+    font-size: 3em;/*96px*/
+}
+.div8{
+    font-size: 1rem; /*16px*/
+    
+}
+.div9{
+    font-size: 2rem;/*32px*/
+}
+.div10{
+    font-size: 3rem;/*48px*/
+}

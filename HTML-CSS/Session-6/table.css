@@ -1,0 +1,42 @@
+caption{
+    font-weight: 900;
+    border: 2px solid black;
+    margin-bottom: 10px;
+
+}
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table{
+    width: 100%;
+}
+th{
+    height: 30px;
+    vertical-align:bottom;
+    padding: 8px;
+    background-color: rgb(61, 61, 61);
+    color: rgb(255, 190, 13);
+}
+td{
+    height: 25px;
+    /* background-color: darkcyan; */
+
+}
+
+td:hover{
+    background-color: bisque;
+}
+
+tr:nth-child(even){
+    background-color: lightgray;
+}
+tr:nth-child(odd){
+    background-color: darkgray;
+}
+tr:hover{
+    background-color: chocolate;
+    /* tr hover çalışması için en altta olması ve td background olması gerekir*/
+}

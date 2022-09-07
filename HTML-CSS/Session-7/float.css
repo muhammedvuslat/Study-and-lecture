@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+}
+
+.img-f{
+    width: 40%;
+    float: left;
+    margin-right: 10px;
+    
+}
+
+.par1{
+    background-color: rgba(255, 166, 0, 0.579);
+    text-align: justify;
+    
+}
+.clear{
+    clear:both;
+}
+
+.box{
+    float: left;
+    font-size: 2rem;
+    
+}
+
+.box1{
+    background-color: aqua;
+    width: 20%;
+    
+}
+.box2{
+    background-color: orangered;
+    width: 50%;
+}
+.box3{
+    background-color: darkcyan;
+    width: 20%; /* inline 100 e tamlanmadığında alta gelen yeni paragraf yan tarafından başlayacaktır bu durumda 2 seçenek vardır*/
+    /*1 İnline 10 tamamla*/
+    /*2 Clear float kullan*/
+
+    
+}

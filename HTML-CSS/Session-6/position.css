@@ -1,0 +1,66 @@
+.main{
+    width: 100%;
+    background-color: rgba(125, 231, 134, 0.726);
+    height: 1000px;
+    position: relative;
+    margin-top: 100px;
+
+}
+
+.box1{
+    width: 100px;;
+    height: 100px;
+    background-color: rgba(8, 38, 231, 0.575);
+    /* border-radius: 20px; */
+    text-align:center;
+    /* position: fixed; */
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+.box2{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(232, 232, 13, 0.753);
+    position: relative; 
+    /*relative olmasaydı top ve left işe yaramayacaktı*/
+    /* top: 20px; */
+    /* left: 30px; */
+    bottom: 20px;
+    z-index: 2; 
+    /* Z-index hangi katmanın üste olacağnı belirler
+    numarası yüksek olan her zaman üst katmanda dır*/ 
+}
+.box3{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(229, 7, 214, 0.721);
+    /* position: absolute; */
+    /* position:sticky; */    
+    position:relative;
+    left:0;
+    bottom: 65px;
+    z-index: 1;
+}
+
+#içerde{
+    background-color: blue;
+    width: 30px;
+    height: 30px;
+    font-size: .5rem;
+    color: yellow;
+    position:absolute;
+    bottom: 0px;
+    right: 0px;
+}
+#içerde2{
+    background-color: brown;
+    width: 30px;
+    height: 30px;
+    font-size: .5rem;
+    color: yellow;
+    position:absolute;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+}

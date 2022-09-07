@@ -1,0 +1,106 @@
+.yazi{
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem auto;
+    width: 50vw;
+
+}
+
+
+
+/* ROTATE */
+
+.yazi1{
+    background-color: greenyellow;
+    transform: rotateX(180deg);
+    /*90 ve 270 derecelerde yazılar tam dik oldularından ve 3D göremediimiz için gözükmezler */
+}
+.yazi2{
+    background-color: tomato;
+    transform: rotateY(180deg);
+}
+.yazi3{
+    background-color: hotpink;
+    transform: rotate(-25deg);
+}
+.yazi4{}
+.yazi5{}
+
+
+/*SCALE*/
+
+.yazi4{
+    background-color: indianred;
+}
+
+.yazi4:hover{
+    transform: scaleX(1.5) scaleY(1.5);
+    /*Aynı anda 2 sclae verilebilinir*/
+}
+.yazi5{
+    background-color: fuchsia;
+}
+.yazi5:active{
+    /* transform: scale(1.2); */
+    transform: scale(98%);
+    /*Tuş basma efekti 😊*/
+}
+/*TRANSLATE-TRANSITION*/
+.translate{
+    background-color: gold;
+    font-weight: 800;
+    font-size: 1.1rem;
+    width: 100px;
+    height: 50px;
+    margin: 10px;
+    transition: background-color 1s, transform 1.2s;
+    /*transition: all 1s;*//*Bütün deişimleri içeriine alcaktır */
+
+}
+.x{
+    transition: transform 1s;
+}
+
+.x:hover{
+    transform: translate(50px);
+    transform: scale(95%);
+    background-color: greenyellow;
+}
+.x:active{
+    transform: scale(50%);
+}
+
+.y:active{
+    transform: translateY(-50px);
+    background-color: tomato;
+}
+
+.xy:active{
+    transform: translate(50px, 50px);
+    background-color: fuchsia;
+
+}
+
+.btn-div{
+    text-align: center;
+}
+
+.btn{
+    padding: 1rem;
+    width: 7rem;
+    background-color: #D2E5D0;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    transition: background-color 0.5s, color 1.5s;
+    color: #DCBAA9;
+    font-weight: 600;
+}
+.btn:hover{
+    background-color: #65463E;
+    color: #AAD6A0;
+}
+
+.btn:active{
+    transform: scale(98%);
+}

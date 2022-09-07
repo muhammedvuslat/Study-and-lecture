@@ -1,0 +1,53 @@
+.container{
+    border: 3px solid red;
+    width: 20rem;
+    height: 20rem;
+    background-image: url(./İmg/resim-2.jpg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: auto;
+    color: yellow;
+    /* opacity: 0.5; */
+}
+
+#paragraf{
+    color: rgba(255, 0, 0, .7) ;
+}
+
+img{
+    width: 20%;
+}
+
+#img1{
+    opacity: 0.3;
+    
+}
+#img1:hover{
+    opacity: 1;
+    transition: all ease-in-out 600ms;
+
+}
+#img3{
+    opacity: 0.3;
+}
+#img3:hover{
+    opacity: 1;
+    transition: all ease-in-out 600ms;
+}
+#img4{
+    opacity: 0.3;
+}
+#img4:hover{
+    opacity: 1;
+    transition: all ease-in-out 600ms;
+}
+#img5{
+    opacity: 0.3;
+    transition: all ease-in-out 800ms;
+
+}
+#img5:hover{
+    opacity: 1;
+    transition: all ease-in-out 600ms;   
+}

@@ -1,0 +1,34 @@
+a{
+   background-color: aqua; 
+   display: block;
+   padding: 10px;
+   
+}
+
+span{
+    background-color: orange;
+    margin: 50px;
+    /* padding: 20px; */
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    border: 2px solid red;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+#box2{
+    background-color: cyan;
+    display: none; /* None satırı box 2 yi kaybederek değer boxları kaydırdı*/
+    margin: 10px;
+}
+#box4{
+    visibility: hidden;
+    /* hidden satırı box 4 ün gizlenmesini sağladığı fakat varlığı hala mevcut */
+}

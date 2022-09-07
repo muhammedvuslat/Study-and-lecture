@@ -1,0 +1,46 @@
+/** Combinators */
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Descendent Selector*/
+/*clası box  olan bütün p leri seç*/
+/* .box p {
+    color: red;
+} */
+
+/*Child Selector*/
+/*Parenti box olan tüm p leri seç*/
+/* .box > p{
+    color: green;
+} */
+
+
+/* h1 elementi kapanktan sonra ki ilk p elementini seçer*/
+/* Adjacent Sibling*/
+h1 + p{
+    color: green;
+}
+
+
+/*h1 elementinden sonraki tüm p elementleri seçer*/
+/*general sinling selector*/
+/* Adjacent Sibling ile aynı öncelik sırasında olduğundan dolayı alt olduğu için renk hotpink oldu*/
+h1 ~ p{
+    color: hotpink;
+}
+
+h3{
+    margin: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid red;
+    outline: 3px solid purple;
+    outline-offset: 10px;
+    border-radius: 50%;   
+
+}

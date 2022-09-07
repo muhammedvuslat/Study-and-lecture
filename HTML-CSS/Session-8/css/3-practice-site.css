@@ -1,0 +1,85 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Open sans";
+    
+}
+
+/*Nav-Top*/
+nav.nav-top{
+    background-image: linear-gradient(to right,
+        white,brown
+    );
+}
+nav.nav-top img{
+    width: 50px;
+}
+
+.sign-in{
+    float: right;
+    margin: 1.5rem 1rem;
+    color: wheat;
+}
+.sign-in a{
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.sign-in a:hover{
+    color: black;    
+}
+.clearfix{
+    clear: both;
+}
+
+/*Nav Main*/
+
+.nav-main a{
+    text-decoration: none;
+    margin-right: 3rem;
+    color: bisque;
+    text-align: justify;
+    font-family: "DynaPuff";
+    
+}
+
+.nav-main{
+    position: sticky;
+    background-color: brown;
+    text-align: center;
+    top: 0;
+    padding: 2rem;
+    
+}
+
+main{
+    padding: 2rem;
+    text-align: justify;
+}
+
+.slack {
+    position: fixed;
+    bottom: 2rem;
+    right: 3rem;
+    background-color: bisque;
+    font-size: 1rem;
+    color: brown;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0.2rem;
+}
+
+.slack:hover{
+    color:bisque;
+    background-color: brown;
+    font-size: 2rem;    
+    height: 4rem;
+    width: 4rem;
+    padding: 0.5rem;
+}
