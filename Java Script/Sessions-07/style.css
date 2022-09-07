@@ -1,0 +1,11 @@
+h1 {
+  text-align: center;
+}
+
+body {
+  background: linear-gradient(
+    261deg,
+    rgb(45, 79, 250) 0%,
+    rgba(252, 70, 106, 0.74) 100%
+  );
+}
