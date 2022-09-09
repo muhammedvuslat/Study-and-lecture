@@ -53,10 +53,10 @@ const euro = 18.23;
 const dolar = 18.19;
 const tlPrices = [100, 150, 100, 50, 80];
 
-const euroPrices = tlPrices.map((tl) => Number(tl / euro).toPrecision(3));
+const euroPrices = tlPrices.map((tl) => Number((tl / euro).toPrecision(3)));
 console.log(euroPrices);
 
-const dolarPrices = tlPrices.map((tl) => Number(tl / dolar).toFixed(2));
+const dolarPrices = tlPrices.map((tl) => Number((tl / dolar).toFixed(2)));
 console.log(dolarPrices);
 
 //?-------------- ÖRNEK -------------------
