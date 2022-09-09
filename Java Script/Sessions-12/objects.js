@@ -49,3 +49,11 @@ function Personel(id, ad, maas) {
 
 const kisi1 = new Personel("1234567890", "Mustafa", 15000);
 const kisi2 = new Personel("1717567890", "Canan", 25000);
+console.log(kisi1);
+console.log(kisi1.ad);
+console.log(kisi2.maas);
+console.log(kisi2["id"]);
+
+// //? Global alanda window objesini gosterir.Yani fonksiyon dışında personel ögesini göstermeyecektir
+// console.log(this);
+// window.alert("Merhaba");
