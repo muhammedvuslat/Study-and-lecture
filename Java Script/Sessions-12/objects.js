@@ -103,3 +103,16 @@ console.log("DEEP:", deepCopyOfWorker);
 //* ======================================================
 //*              Object Metotlari
 //* ======================================================
+const personal = {
+  name: "Can",
+  surname: "Canan",
+  dob: "1990",
+  job: "developer",
+  salary: "140000",
+  drivingLicense: true,
+  calculateAge: function () {
+    return new Date().getFullYear() - this.dob;
+  },
+};
+
+console.log(personal.calculateAge());
