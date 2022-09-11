@@ -81,5 +81,25 @@ worker.email = "can@gmail.com";
 console.log(worker);
 
 // %10 zaman maaşa değişiklik yapıldı
-worker["salary"] = worker["salary"] * 1.1;
+// worker["salary"] = worker["salary"] * 1.1;
+worker["salary"] *= 1.1; //! yukarıdaki çözümü kısa yolu
 console.log(worker);
+
+//* Object Copy
+const person = worker; //! Shallow (Sig - Sığ) Copying (sı koplamada personda yapılan değişiklik workerda da gerçekleşir)
+console.log("PERSON:", person);
+//! Object.create(), Object.assign(), spread (...), concat() , slice() -> Shallow Copying
+
+person.dob = 2000;
+console.log("PERSON:", person);
+
+//! Deep Copy (Deep(derin) kopyalamada oluşturulan deişken de yapılan değişiklik worker değişkenini etkilemecektir)
+let deepCopyOfWorker = JSON.parse(JSON.stringify(worker));
+// console.log(JSON.stringify(worker));
+
+deepCopyOfWorker.dob = "2022";
+console.log("DEEP:", deepCopyOfWorker);
+
+//* ======================================================
+//*              Object Metotlari
+//* ======================================================
