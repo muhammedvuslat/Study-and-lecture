@@ -57,3 +57,29 @@ console.log(kisi2["id"]);
 // //? Global alanda window objesini gosterir.Yani fonksiyon dışında personel ögesini göstermeyecektir
 // console.log(this);
 // window.alert("Merhaba");
+
+const worker = {
+  name: "Can",
+  surname: "Canan",
+  age: 33,
+  job: "developer",
+  languages: ["C++", "Java", "Javacript", "Pyhton", "Go"],
+  salary: "140000",
+};
+
+console.log(worker);
+
+console.log("JOB:", worker.job);
+console.log("languages:", worker["languages"]);
+
+console.log(worker.languages[2]);
+
+worker["languages"].forEach((l) => console.log(l));
+
+worker.dob = "1990";
+worker.email = "can@gmail.com";
+console.log(worker);
+
+// %10 zaman maaşa değişiklik yapıldı
+worker["salary"] = worker["salary"] * 1.1;
+console.log(worker);
