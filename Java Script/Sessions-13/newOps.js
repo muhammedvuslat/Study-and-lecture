@@ -122,3 +122,45 @@ const personel = {
 };
 const { pName, job, ...ageSurname } = personel; //* ageSurname e atanan yeni değişken sayesinde pName ve job haricinden kalan objelere ulaştık
 console.log(ageSurname); //* {surname: 'smith', age: 30}
+//! 2- Bir fonksiyonun argumanlarini diziye cevirmek icin kullanilabilir.
+const sum = (x, y) => x + y;
+
+//? hata vermez fakat sadece 2 argumani toplar
+console.log(sum(1, 2, 3, 4, 5, 6));
+
+const sumAll = (...numbers) => {
+  console.log(numbers); //! (4) [1, 2, 3, 4]
+  return numbers.reduce((s, n) => (s += n), 0);
+};
+
+console.log("SUM OF NUMBERS:", sumAll(1, 2, 3, 4, 5, 6));
+
+const showName = (name, surname, ...titles) => {
+  console.log(titles);
+  const summary = `${name} ${surname} is a ${titles.join(" and ")}`;
+  console.log(summary);
+};
+
+showName("Noah", "Adams", "Developer", "Instr", "Professor", "Dad");
+
+//*======================================================
+//*  SPREAD (...)
+//* ======================================================
+
+//? Spread operatoru ise iterables olan bir elemani bireysel
+//? degerler haline getirir.
+
+//* array concatination
+const flyingVecihles = ["Aircraft", "Helicopter", "QuadCopter"];
+const automobiles = ["Truck", "Bus", "Car", "SUV"];
+
+// const allVhicles = [flyingVecihles, automobiles]; //! nestden bir yapıda iç içe gösterim sağladı
+const allVhicles = [...flyingVecihles, ...automobiles]; //! spread (yayılma metodu) ile birleştirdi
+console.log(allVhicles); //! ['Aircraft', 'Helicopter', 'QuadCopter', 'Truck', 'Bus', 'Car', 'SUV']
+
+//*Example:
+const citrus = ["orang", "lime", "lemon"];
+const fruits = ["aplle", ...citrus, "banana", "chery", "pear"];
+console.log(fruits);
+
+//* String spread
