@@ -179,3 +179,10 @@ console.log(Math.max(nums)); //! dizi içerisinden de olmayan tek obşe için ma
 console.log(Math.max(...nums)); //! obje verebilmek için açıyoruz
 
 //* Array Copy
+const myNumbers = [1, 2, 3];
+const herNumbers = [-1, ...myNumbers, 7];
+const hisNumbers = [...herNumbers];
+hisNumbers.push(101);
+console.log("MY:", myNumbers, "HIS:", hisNumbers);
+
+console.log(herNumbers);
