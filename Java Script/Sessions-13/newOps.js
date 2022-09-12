@@ -40,3 +40,44 @@ console.log(car1);
 const { name: c1Name, model: c1Model } = car1; //! name ve model şeklide yazdırılamaz çünkü cars objesinin içerisinde ↙
 const { name: c2Name, model: c2Model } = car2; //! car1 ve car2 nin obje isimleri aynı bu nedenle isim değişikliği ataması yapılır
 console.log(c2Name, c1Name);
+
+//* Example
+const team = [
+  {
+    name: "Josh",
+    surname: "Barry",
+    job: "developer",
+    age: 30,
+  },
+  {
+    name: "Josh",
+    surname: "Barry",
+    job: "tester",
+    age: 45,
+  },
+  {
+    name: "Hazel",
+    surname: "Nut",
+    job: "team lead",
+    age: 40,
+  },
+];
+
+//* Classical
+team.forEach((p) => {
+  console.log("*******Classical*********");
+  console.log("Name:", p.name);
+  console.log("Surname:", p.surname);
+  console.log("Job:", p["job"]);
+  console.log("Age:", p.age);
+});
+
+//* DESTRUCTURING
+team.forEach((p) => {
+  const { name, surname, job, age } = p;
+  console.log("*******Destructuring*********");
+  console.log("Name:", name);
+  console.log("Surname:", surname);
+  console.log("Job:", job);
+  console.log("Age:", age);
+});
