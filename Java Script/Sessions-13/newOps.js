@@ -81,3 +81,44 @@ team.forEach((p) => {
   console.log("Job:", job);
   console.log("Age:", age);
 });
+
+//* function nın dondurdugu obje dogrudan destructuring yapilabilir
+
+const getInfo = () => {
+  return {
+    id: 1,
+    productName: "Iphone",
+    price: 30000,
+  };
+};
+
+console.log(getInfo());
+const { productName, price } = getInfo();
+console.log("Product Name:", productName);
+console.log("Product Price:", price);
+
+//*======================================================
+//*  REST (...)
+//* ======================================================
+
+//? REST operatoru kullanici tarafindan girilen degerleri dizi
+//? icerisine konumlandirir. Cesitli kullanim alanlari vardir.
+
+//! 1- Bir dizi veya object'deki bazi degerlerden geri kalanlarini
+//!    ayri dizi yada objelere kopyalanmasini saglayabilir.
+
+//* REST: (Arrays)
+const autos = ["anadol", "reno", "bmw", "mercedes", "ferrari"];
+const [anadol, reno, ...restAutos] = autos; //! rest operatörü (...değişkenİsmi) ile tanımmşanır
+console.log(anadol, reno);
+console.log(restAutos);
+
+//* REST (Objects)
+const personel = {
+  pName: "john",
+  surname: "smith",
+  job: "developer",
+  age: 30,
+};
+const { pName, job, ...ageSurname } = personel; //* ageSurname e atanan yeni değişken sayesinde pName ve job haricinden kalan objelere ulaştık
+console.log(ageSurname); //* {surname: 'smith', age: 30}
