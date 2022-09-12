@@ -198,6 +198,6 @@ console.log(copiedObj);
 copiedObj.c = "33";
 console.log(copiedObj, myObj);
 
-const combinedObj = { ...herObj, ...myObj };
+const combinedObj = { ...herObj, ...myObj }; //! aynı keylerden yazırma sırası neyse ona göre yazdırır
 
 console.log(combinedObj);
