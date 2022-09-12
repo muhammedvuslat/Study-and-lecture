@@ -15,8 +15,8 @@ h1.style.backgroundColor = "red";
 //*-------------------------------------------
 const myInput = document.getElementById("input");
 const button = document.getElementById("btn");
-button.style.backgroundColor = "black";
-button.style.color = "magenta";
+button.style.backgroundColor = "brown";
+button.style.color = "yellow";
 button.style.width = "7rem";
 button.style.border = "none";
 button.style.borderRadius = "10px";
@@ -65,3 +65,30 @@ myListArray.forEach((item) => console.log(item.innerText));
 //?Spread
 [...myList].forEach((item) => console.log(item.innerText));
 [...myList].forEach((item) => (item.style.color = "red"));
+
+//? 1- queryselector() etiket secebilir.
+
+const myLi = document.querySelector("li");
+console.log(myLi); //! dediimizde html yapısını gösterecek
+console.log(myLi.innerText); //! dediğimizde sadece indisdeki yazıyı verecek
+myLi.style.color = "green";
+
+//? 2- queryselector() class secebilir.
+
+const itemMlist = document.querySelector(".item-list");
+itemMlist.style.backgroundColor = "grey";
+
+//? 3- queryselector() id secebilir.
+
+const input = document.querySelector("#input");
+console.log(input.value);
+
+document.querySelector("#btn").style.cursor = "pointer";
+
+//? 4- queryselector() ile CSS deki gibi secim yapilabilir.
+
+const itemH2 = document.querySelector(".item-list h2");
+itemH2.style.color = "purple";
+
+const myBtn = document.querySelector("input[type='button']"); //! property e göre seçim yapma yöntemi
+console.log(myBtn);
