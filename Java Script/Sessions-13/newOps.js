@@ -164,3 +164,18 @@ const fruits = ["aplle", ...citrus, "banana", "chery", "pear"];
 console.log(fruits);
 
 //* String spread
+let str = "Hello FS12";
+const charArray = [...str];
+// console.log([...str]); //* Deişken atamasız gösterimi
+console.log(charArray, str);
+
+charArray[0] = "X"; //* deişken ataması ile charArrayin 0'ıncı indeksini değiştirdik [H] ↹ [X]
+console.log(charArray, str);
+
+//* Max() - Dizileri fonksiyonlara acik bir sekilde parametre vermek icin
+
+const nums = [1, 3, 5, 2, 10];
+console.log(Math.max(nums)); //! dizi içerisinden de olmayan tek obşe için math fonksiyonu kullanılmaz
+console.log(Math.max(...nums)); //! obje verebilmek için açıyoruz
+
+//* Array Copy
