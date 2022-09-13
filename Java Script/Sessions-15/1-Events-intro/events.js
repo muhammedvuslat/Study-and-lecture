@@ -40,5 +40,28 @@ document.getElementById("btn").addEventListener("click", function () {
   !input.value
     ? alert("Please enter an item")
     : alert(`${input.value} entered`);
-  input.value = ""; //! input box üzerinden girilen deerin sıfırlanması için
+  input.value = ""; //! input box üzerinden girilen değerin sıfırlanması için
 });
+
+//* EXAMPLE-3
+//* -------------------------------------------------
+
+const list = document.querySelectorAll(".list"); //?Node List
+list.forEach((li) => {
+  li.style.transition = "all 0.5s";
+  li.onmouseover = () => {
+    li.style.fontSize = "2rem";
+    li.style.trasform = "translateX(15px)";
+    li.style.lineHeight = "2rem";
+  };
+  li.onmouseout = () => {
+    li.style.fontSize = "1rem";
+    li.style.trasform = "translateX(-15px)";
+    li.style.lineHeight = "1rem";
+  };
+});
+//* EXAMPLE-4 (onload)
+//* -------------------------------------------------
+window.onload = function () {
+  document.querySelector("#input").focus();
+};
