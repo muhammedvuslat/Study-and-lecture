@@ -1,0 +1,17 @@
+:root {
+  --brown: #b64926;
+}
+/*!Navbar*/
+.navbar {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.nav-link {
+  color: #468966;
+  transition: color 0.5s;
+}
+
+.nav-link:hover {
+  color: var(--brown);
+}
