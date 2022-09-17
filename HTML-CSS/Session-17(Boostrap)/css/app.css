@@ -1,5 +1,5 @@
 :root {
-  --brown: #b64926;
+  --brown: #a1523f;
 }
 /*!Navbar*/
 .navbar {
@@ -61,4 +61,10 @@ section#instructors .socials i:hover {
 section#student img {
   max-width: 400px;
   min-width: 250px;
+}
+section#courses .nav button {
+  color: var(--brown);
+}
+section#courses .nav-link.active {
+  background-color: #809bed;
 }
