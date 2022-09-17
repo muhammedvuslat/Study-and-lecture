@@ -57,3 +57,8 @@ section#instructors .socials i {
 section#instructors .socials i:hover {
   opacity: 0.5;
 }
+
+section#student img {
+  max-width: 400px;
+  min-width: 250px;
+}
