@@ -41,6 +41,10 @@
 .aboutclr {
   color: var(--brown);
 }
+.aboutbclr {
+  background-color: var(--brown);
+  border-color: white;
+}
 
 /* Instructors */
 section#instructors .card {
