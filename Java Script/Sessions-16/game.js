@@ -18,6 +18,7 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     msg.innerHTML = `Congrats You Win <i class="fa-solid fa-face-grin-hearts fa-2x"></i>`; //! <i> yani html ögesi eklendiği için innerHTML girişi sağlandı
     // document.querySelector("body").style.background = "green"; //? normal tanımlama
     body.className = "bg-success";
+    document.querySelector(".check-btn").disabled = true;
     if (score > topScore) {
       topScore = score;
       document.querySelector(".top-score").textContent = topScore;
@@ -31,9 +32,23 @@ document.querySelector(".check-btn").addEventListener("click", () => {
         : (msg.innerHTML = `INCREASE <i class="fa-solid fa-arrow-trend-up fa-2x"></i>`);
     } else {
       msg.innerHTML = `You Lost <i class="fa-solid fa-face-sad-tear fa-2x"></i>`; //! <i> yani html ögesi eklendiği için innerHTML girişi sağlandı
+      document.querySelector(".secret-number").textContent = randomNumber;
       body.className = "bg-danger";
       document.querySelector(".check-btn").disabled = true;
     }
     document.querySelector(".score").textContent = score;
   }
+});
+
+//! Again butonuna basıldığında
+document.querySelector(".again-btn").addEventListener("click", () => {
+  score = 10;
+  document.querySelector(".score").textContent = score;
+  const randomNumber = Math.round(Math.random() * 100);
+  document.querySelector(".secret-number").textContent = "?";
+  console.log(randomNumber);
+  document.querySelector(".check-btn").disabled = false;
+  document.querySelector("body").classList.remove("bg-success", "bg-danger");
+  document.querySelector(".guess-input").value = "";
+  document.querySelector(".msg").innerText = `Starting...`;
 });
