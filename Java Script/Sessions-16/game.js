@@ -1,9 +1,12 @@
 //! 0 - 100 arasında rasgele bir sayı tut
-const randomNumber = Math.round(Math.random() * 100);
+let randomNumber = Math.round(Math.random() * 100);
 console.log(randomNumber);
 //! Variables
 let score = 10;
-let topScore = 0;
+// let topScore = 0; //! local storage oluşturduğumuz için atama kullanmamıza gerek kalmadı
+let topScore = localStorage.getItem("topScore") || 0; //! local storage da top score var ise var olan deeri ata yok ise 0ı ata
+//! DOM daki topScore değişkenini local storage dan okuyarak günceller ↓
+document.querySelector(".top-score").textContent = topScore;
 
 //! check buton ataması
 document.querySelector(".check-btn").addEventListener("click", () => {
@@ -20,8 +23,11 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     body.className = "bg-success";
     document.querySelector(".check-btn").disabled = true;
     if (score > topScore) {
-      topScore = score;
-      document.querySelector(".top-score").textContent = topScore;
+      //   topScore = score; //! local storage oluşturduğumuz için değişim kullanmamıza gerek kalmadı
+      //! local storage deki topScore değişkenini güncelle ↓
+      localStorage.setItem("topScore", score);
+      //! DOM daki topScore değişkenini güncelle ↓
+      document.querySelector(".top-score").textContent = score;
     }
     document.querySelector(".secret-number").textContent = randomNumber;
   } else {
@@ -44,7 +50,7 @@ document.querySelector(".check-btn").addEventListener("click", () => {
 document.querySelector(".again-btn").addEventListener("click", () => {
   score = 10;
   document.querySelector(".score").textContent = score;
-  const randomNumber = Math.round(Math.random() * 100);
+  randomNumber = Math.round(Math.random() * 100);
   document.querySelector(".secret-number").textContent = "?";
   console.log(randomNumber);
   document.querySelector(".check-btn").disabled = false;
