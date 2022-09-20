@@ -24,10 +24,16 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     }
     document.querySelector(".secret-number").textContent = randomNumber;
   } else {
-    score -= 1; //! veya score--;
-
-    guessInput > randomNumber
-      ? (msg.innerText = "DECREASE")
-      : (msg.innerText = "INCREASE");
+    score -= 1; //! veya score--; (Önce rakamı azalt sonra kontrol et mantığı)
+    if (score > 0) {
+      guessInput > randomNumber
+        ? (msg.innerHTML = `DECREASE <i class="fa-solid fa-arrow-trend-down fa-2x"></i>`)
+        : (msg.innerHTML = `INCREASE <i class="fa-solid fa-arrow-trend-up fa-2x"></i>`);
+    } else {
+      msg.innerHTML = `You Lost <i class="fa-solid fa-face-sad-tear fa-2x"></i>`; //! <i> yani html ögesi eklendiği için innerHTML girişi sağlandı
+      body.className = "bg-danger";
+      document.querySelector(".check-btn").disabled = true;
+    }
+    document.querySelector(".score").textContent = score;
   }
 });
