@@ -1,0 +1,21 @@
+.outer {
+  background-color: brown;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.inner {
+  background-color: burlywood;
+  width: 50%;
+  height: 50%;
+  /* transition: transform 1s ease-in-out; */ /*!Kalıp yöntem */
+  /* transition: transform 1s cubic-bezier(0.72, 0.15, 0.46, 0.9),
+    background-color 1.5s; */
+  /*! 2.Yöntem Transition uygulanan divi chrom üzerinden incele transition kısmında ayar yapılıp kodu alınabilinir */
+}
+
+.outer:hover .inner {
+  /* transform: translateX(250px);
+  background-color: coral; */
+}
