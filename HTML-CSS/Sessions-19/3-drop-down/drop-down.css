@@ -9,7 +9,8 @@
   max-width: 600px;
   margin: auto;
   text-align: center;
-  animation: dropdown 6s ease-in-out forwards alternate;
+  animation: dropdown 6s ease-in-out forwards alternate,
+    fadeIn 2s ease-in-out forwards;
   position: absolute;
 }
 .card button {
@@ -48,5 +49,14 @@
   }
   100% {
     top: -40%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
