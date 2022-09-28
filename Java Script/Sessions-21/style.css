@@ -1,0 +1,6 @@
+body {
+  text-align: center;
+  font-family: tahoma;
+  height: 100vh;
+  background: linear-gradient(to top right, #ffa600, #0080f8);
+}
