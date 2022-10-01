@@ -19,10 +19,36 @@
 //* degerlerinin dondurulmesine ile kodun calismasi devam eder.
 
 const getNews = async function () {
-  const API_KEY = "93037a64725447a1a8375d55484710e9";
+  const API_KEY = "93037a64725447a1a8375d55484710e9"; //! 9
   const url =
     "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + API_KEY;
-  const res = await fetch(url);
-  console.log(res);
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`Something went wrong: ${res.status}`);
+    }
+    const data = await res.json(); //! json formatı ile içerisine erişim
+    // console.log(data.articles); //! articles içierisini görmek için data.articles
+    renderNews(data.articles);
+  } catch (error) {
+    console.log(error);
+  }
 };
-getNews();
+const renderNews = (news) => {
+  const newsList = document.getElementById("news-list");
+  news.forEach((item) => {
+    const { title, description, urlToImage, url } = item; //! Destructuring yapı
+    newsList.innerHTML += `
+    <div class="col-md-6 col-lg-4 col-xl-3"><div class="card" ;">
+    <img class="card-img-top" src="${urlToImage}" alt="Card image cap">
+    <div class="card-body">
+    <h5 class="card-title">${title}</h5>
+    <p class="card-text">${description}</p>
+    <a href="${url}" target="_blank" class="btn btn-warning">Details</a>
+    </div>
+    </div></div>
+         
+    `;
+  });
+};
+window.addEventListener("load", getNews); //! sayfa yüklendikten sonra getNews çağrılıt clg(getNews) yerine
