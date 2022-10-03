@@ -42,7 +42,7 @@ const renderNews = (news) => {
   if (isError) {
     newsList.innerHTML += `
     <h2>News can not be fetched </h2>
-    <img src="../img/404.png" alt="">
+    <img src="./img/404.png" alt="">
     `;
     return;
   }
