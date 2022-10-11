@@ -70,7 +70,7 @@ mag1.setPrice(50);
 console.log(mag1);
 
 //? JS'de overloading, parent-child class arasinda kullanilir.
-//? Ancak diger bir cok dilde ayni metot ayni class icerisinde de farkli paramtreler ile tekrar tekrar yazilabilir.
+//? Ancak diger bir cok dilde ayni metot ayni class icerisinde de farkli parametreler ile tekrar tekrar yazilabilir.
 //? overloading
 // function x(string a, string b) {
 //   return a + b;
