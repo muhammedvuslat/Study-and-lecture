@@ -14,3 +14,8 @@ inc(4);
 inc(6);
 dec();
 console.log("dec() :>> ", dec());
+inc();
+console.log("counter :>> ", counter);
+// counter = 29 //! deişken atanamaz
+inc();
+console.log("counter :>> ", counter);
