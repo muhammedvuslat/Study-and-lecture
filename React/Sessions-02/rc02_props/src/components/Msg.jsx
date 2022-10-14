@@ -2,9 +2,7 @@
 const Msg = ({ name, age }) => {
   return (
     <div>
-      <h3>
-        Merhaba {name} {age}
-      </h3>
+      <h2>Merhaba {name}</h2>
     </div>
   );
 };
