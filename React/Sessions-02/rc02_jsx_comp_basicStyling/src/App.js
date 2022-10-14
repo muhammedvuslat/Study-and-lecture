@@ -1,4 +1,6 @@
 import React from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 //! Componentler, HTML,CSS ve JS kodlarindan meydana gelmiş
 //! bir kod parcacigidir.
 //! Bir componentin return () kismi ise JSX kodlari icerir.
@@ -9,7 +11,12 @@ import React from "react";
 //! herhangi bir element kullanilabilir.
 
 function App() {
-  return <h1>JSX & COMPONENTS & BASİC STYLING</h1>;
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
