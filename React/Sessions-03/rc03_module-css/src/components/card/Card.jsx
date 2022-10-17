@@ -1,10 +1,11 @@
 import Buton from "../buton/Buton";
-import "./Card.css";
+// import "./Card.css"; //! Cssi modül haline getirdik ⬇
+import CardStyle from "./card.module.css";
 const Card = ({ language, btn, img }) => {
   return (
-    <div>
+    <div className={CardStyle.title}>
       <h1>{language}</h1>
-      <img src={img} alt="img" />
+      <img className={CardStyle.images} images src={img} alt="img" />
       <Buton btn={btn} />
     </div>
   );
