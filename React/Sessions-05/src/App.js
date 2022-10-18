@@ -1,7 +1,12 @@
+import Events from "./components/1-events/Events";
+import Counter from "./components/2-classComponents/Counter";
+
 function App() {
   return (
     <div>
-      <h1>EVENTS</h1>
+      <Events />
+      <Counter />
+      <Counter count={5} />
     </div>
   );
 }
