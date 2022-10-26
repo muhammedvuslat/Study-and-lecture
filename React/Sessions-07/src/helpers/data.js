@@ -13,6 +13,7 @@ export const data = [
     img: javascript,
     options: ["Website Development", "1995", "Brendan Eich"],
   },
+
   {
     name: "HTML",
     img: html,
