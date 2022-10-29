@@ -53,6 +53,7 @@ class LifeCycleMethods extends React.Component {
 
   render() {
     //! 2-) Her bir render'da cagrilir
+    console.log("Rendered");
     return (
       <div className="container text-center">
         <h1 className="text-danger">LIFECYCLE METHODS</h1>
