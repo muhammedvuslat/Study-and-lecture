@@ -16,13 +16,12 @@ const User = () => {
   return (
     <div>
       <h1>
-        {/* ⬇(name?.first(name?.last))⬇ Optinal chaining name varsa name.first de eriş ve name var ise name.lasta eriş */}
-        {name?.first}
-        {name?.last}
+        {/* ⬇(name?.first(name?.last))⬇ Optinal chaining name varsa name.first de eriş ve name var ise name.lasta eriş zincirleme olarak devam edebilir name?.first?.xxxx  */}
+        {name?.first} {name?.last}
       </h1>
-      <img src="" alt="" />
-      <p>E-mail</p>
-      <h5>DOB</h5>
+      <img className="rounded-circle" src={picture?.large} alt="" />
+      <p>{email}</p>
+      <h5>{new Date(dob?.date).toLocaleDateString()}</h5>
       <button className="btn btn-warning" onClick={getUser}>
         Get User
       </button>
