@@ -2,6 +2,7 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 
 const TutorialList = () => {
+  //! test data
   const tutorials = [
     {
       id: 1,
