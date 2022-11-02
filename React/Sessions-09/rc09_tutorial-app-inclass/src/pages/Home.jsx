@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const Home = () => {
   const [tutorials, setTutorials] = useState([]);
   const url = "https://axios-example-cw.herokuapp.com/api/tutorials";
+  //! CRUD: (GET-READ) Crud işlemi yapılmış oldu
   const getTutorials = async () => {
     try {
       const { data } = await axios(url);
@@ -23,7 +24,7 @@ const Home = () => {
 
   return (
     <>
-      <AddTutorial />
+      <AddTutorial getTutorials={getTutorials} />
       <TutorialList tutorials={tutorials} />
     </>
   );
