@@ -1,6 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
+import { EditTutorial } from "./EditTutorial";
 //  //! test data
 //  const tutorials = [
 //   {
@@ -16,11 +17,27 @@ import axios from "axios";
 // ];
 
 const TutorialList = ({ tutorials, getTutorials }) => {
+  //! Delete simge işlemi (CRUD - Delete)
   const deleteTutorial = async (id) => {
     const url = "https://axios-example-cw.herokuapp.com/api/tutorials";
 
     try {
       await axios.delete(`${url}/${id}`); //! delete işlemin de ilgili id urlinin oluşturulması için arada /  var
+    } catch (error) {
+      console.log(error);
+    }
+    getTutorials();
+  };
+  //! PUT:  Edit simge işlemi (CRUD - Update)
+  //? PATCH : Partialy update (Kısmen güncelleme)
+  //! Put: Whole Update,(Tüm Güncelleme,)
+
+  const editTutorial = async (item) => {
+    const url = "https://axios-example-cw.herokuapp.com/api/tutorials";
+    const { id, title, description } = item; //! havada  Destructuring yapıldı ve item.id yerine id  yazılabilinir ⬇
+
+    try {
+      await axios.put(`${url}/${id}`, { title, description }); //! edit işlemin de ilgili id urlinin oluşturulması için arada /  var
     } catch (error) {
       console.log(error);
     }
@@ -49,9 +66,18 @@ const TutorialList = ({ tutorials, getTutorials }) => {
                 <td>{description}</td>
                 <td className="text-center text-nowrap">
                   <FaEdit
+                    data-bs-toggle="modal"
+                    data-bs-target="#edit-modal"
                     size={20}
                     type="button"
                     className="me-2 text-warning"
+                    onClick={() =>
+                      editTutorial({
+                        id: "1318",
+                        title: "Java",
+                        description: "Script",
+                      })
+                    }
                   />
                   <AiFillDelete
                     size={22}
@@ -65,6 +91,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
           })}
         </tbody>
       </table>
+      <EditTutorial />
     </div>
   );
 };
