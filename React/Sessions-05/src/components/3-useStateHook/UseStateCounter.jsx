@@ -51,6 +51,14 @@ const UseStateCounter = () => {
     //? setPerson({ name: "Ahmet", surname: "Can", age: 44 });
     setPerson({ ...person, age: person.age + 1 });
   };
+  const oriage = () => {
+    setPerson({ ...person, age: (person.age = 43) });
+  };
+  const Decage = () => {
+    if (person.age > 43) {
+      setPerson({ ...person, age: person.age - 1 });
+    }
+  };
   return (
     <div className="container text-center mt-4">
       <section>
@@ -68,8 +76,8 @@ const UseStateCounter = () => {
         <button onClick={dec} className="btn btn-danger">
           DEC
         </button>
-        {/* <button
-        onClick={() => count > 0 && setCount(0)}
+        {/* <button                 
+        onClick={() => count > 0 && setCount(count-1}
         className="btn btn-danger"
       >
         DEC
@@ -80,9 +88,17 @@ const UseStateCounter = () => {
         <h2>{person.name}</h2>
         <h2>{person.surname}</h2>
         <h4>{person.age}</h4>
-        <button onClick={incAge} className="btn btn-info">
+        <button onClick={incAge} className="btn btn-danger">
           {" "}
           İnc Age
+        </button>
+        <button onClick={oriage} className="btn btn-warning m-1">
+          {" "}
+          Original Age
+        </button>
+        <button onClick={Decage} className="btn btn-info m-1">
+          {" "}
+          Dec Age
         </button>
       </section>
     </div>
