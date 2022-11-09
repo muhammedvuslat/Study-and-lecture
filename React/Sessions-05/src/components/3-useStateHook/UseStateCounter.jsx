@@ -35,15 +35,6 @@ const UseStateCounter = () => {
     surname: "Doe",
     age: 43,
   });
-  //! ⬆
-  const inc = () => {
-    setCount(count + 1);
-  };
-  const dec = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
   const incAge = () => {
     //! Bu sekilde bir atama ile sayisal deger state'in uzerine yazilmis oldu.
     //! Dolayisiyla obje yapisi bozuldu.
@@ -57,8 +48,19 @@ const UseStateCounter = () => {
   const Decage = () => {
     if (person.age > 43) {
       setPerson({ ...person, age: person.age - 1 });
+      console.log(person.age);
     }
   };
+  //! ⬆
+  const inc = () => {
+    setCount(count + 1);
+  };
+  const dec = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
   return (
     <div className="container text-center mt-4">
       <section>
