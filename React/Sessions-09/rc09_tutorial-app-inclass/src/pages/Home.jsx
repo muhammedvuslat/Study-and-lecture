@@ -9,7 +9,7 @@ const Home = () => {
   //! CRUD: (GET-READ) Crud işlemi yapılmış oldu
   const getTutorials = async () => {
     try {
-      const { data } = await axios(url);
+      const { data } = await axios(url);  
       console.log(data);
       setTutorials(data);
     } catch (error) {
