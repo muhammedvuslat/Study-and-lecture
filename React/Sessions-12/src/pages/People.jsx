@@ -27,6 +27,10 @@ const People = () => {
               key={id}
               className=" col-sm-12 col-md-6 col-lg-4"
               type="button"
+              //! Absolute path tam tarif
+              // onClick={() => navigate(`/people/${id}`)}
+              //! Relative path  bulunduğu componentin urline id ekleyerek tarif eder
+              // onClick={() => navigate(`${id}`)}
               onClick={() => navigate(`/people/${id}`)}
               //* Burada her tıklanma da API den şstek yapılmak için tasarlanmıştır...
               //! onClick={() => navigate(`/people/${id}`, { state: person })}
