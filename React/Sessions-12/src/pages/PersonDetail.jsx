@@ -44,6 +44,12 @@ const PersonDetail = () => {
 
   if (error) {
     return <NotFound />;
+  } else if (!person) {
+    return (
+      <div>
+        <h1>Data Loading</h1>
+      </div>
+    );
   } else {
     return (
       <div className="container text-center">

@@ -7,6 +7,8 @@ import NotFound from "./pages/NotFound";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Paths from "./pages/Paths";
 import PersonDetail from "./pages/PersonDetail";
+import FullStack from "./pages/FullStack";
+import Aws from "./pages/Aws";
 
 function App() {
   return (
@@ -16,7 +18,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/people" element={<People />} />
-        <Route path="/paths" element={<Paths />} />
+        {/* Paths componenti için iç içe geçmiş route yapıyı uygunlandı yani url de path/component */}
+        <Route path="/paths" element={<Paths />}>
+          <Route index element={<FullStack />} />
+          {/* index element ile path sayfası açıldığında default olarak tıklanmadan Fullstack sayfası açık olarak gelecek */}
+          <Route path="aws" element={<Aws />} />
+        </Route>
         <Route path="/contact" element={<Contact />} />
         <Route path="/people/:id" element={<PersonDetail />} />{" "}
         {/* :id bir değişken parametre olup PersonDetail componentine gönderilir ve useParams ile yakalanır */}
