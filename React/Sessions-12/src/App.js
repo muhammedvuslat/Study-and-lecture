@@ -9,6 +9,8 @@ import Paths from "./pages/Paths";
 import PersonDetail from "./pages/PersonDetail";
 import FullStack from "./pages/FullStack";
 import Aws from "./pages/Aws";
+import PrivateRouter from "./pages/PrivateRouter";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -24,7 +26,14 @@ function App() {
           {/* index element ile path sayfası açıldığında default olarak tıklanmadan Fullstack sayfası açık olarak gelecek */}
           <Route path="aws" element={<Aws />} />
         </Route>
-        <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}{" "}
+        {/* Contact sayfasının normal hali */}
+        {/* //! contact sayfasını güvenlikli hale getirme işlemi ayrı bir <Route></Route>  ile*/}
+        <Route path="/contact" element={<PrivateRouter />}>
+          <Route path="" element={<Contact />} />
+        </Route>
+        {/* //! contact sayfasını güvenlikli hale getirme işlemi ayrı bir <Route></Route>  ile*/}
+        <Route path="/login" element={<Login />} />
         <Route path="/people/:id" element={<PersonDetail />} />{" "}
         {/* :id bir değişken parametre olup PersonDetail componentine gönderilir ve useParams ile yakalanır */}
         {/*  <Route path="*" element={<NotFound />} />  */}{" "}
