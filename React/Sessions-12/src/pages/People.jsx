@@ -21,13 +21,17 @@ const People = () => {
       <div className="row justify-content-center g-3">
         {people?.map((person) => {
           const { id, first_name, last_name, avatar } = person;
+          /*  people aktarılan api persona destructing edilir */
           return (
             <div
               key={id}
               className=" col-sm-12 col-md-6 col-lg-4"
               type="button"
-              onClick={() => navigate(`/people/${id}`)}
+              onClick={() => navigate(`/people/${id}`, { state: person })}
             >
+              {/* state:person person değişkenini PersonDataile iletimini sağlar
+              (key:value yapısı ile) (state bir use location objesidir adı
+              değiştirilemez ) */}
               <img className="rounded" src={avatar} alt="img" />
               <h6>
                 {first_name} {last_name}
