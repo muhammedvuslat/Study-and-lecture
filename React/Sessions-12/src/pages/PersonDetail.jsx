@@ -1,22 +1,46 @@
+import { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const PersonDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
+
+  //! navigate ile gonderilen state'i yakalamak icin useLocation Hook'u kullanilabilir.
+  //! Bu durumda veri, state ile geldigi icin yeniden fetch yapilmasina gerek kalmaz
   /* const { state } = useLocation();
   /* People componentinden gelen state:person key value yapısını  const {state}= useLocation() ile yakalıyoruz */
-  const { state: person } = useLocation();
+  /*  const { state: person } = useLocation(); */
   /* üst satırda state ismi destructuring ile persona çevrilmiştir */
-  console.log(person);
+  /* console.log(person); */
   /* clg person ile gelen veriler people componentinde yapılan fetchden sonra person ile iletilen API verisidir */
+
+  const [person, setPerson] = useState("");
+  //!
+  /* const getPerson = () => {
+    fetch(`https://reqres.in/api/users${id}`)
+      .then((res) => res.json())
+      .then((data) => setPerson(data.data))
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getPerson();
+  }, []); */
+  //! fonsiyona ihtiyacımız olmadığı zamanlarda fetch işlemini yukardaki normalden farklı olarak aşağıdaki gibi(didMount) çağırmak mümkün
+  useEffect(() => {
+    fetch(`https://reqres.in/api/users/${id}`)
+      .then((res) => res.json())
+      .then((data) => setPerson(data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="container text-center">
       <h2>
-        {person.first_name} {person.last_name}
+        {person?.first_name} {person?.last_name}
       </h2>
-      <img className="rounded  " src={person.avatar} alt="" />
-      <p>{person.email}</p>
+      <img className="rounded  " src={person?.avatar} alt="" />
+      <p>{person?.email}</p>
       <div>
         <button className="btn btn-success me-2" onClick={() => navigate("/")}>
           Go Home
