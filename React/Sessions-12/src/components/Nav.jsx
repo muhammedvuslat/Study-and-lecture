@@ -5,9 +5,9 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-md navbar-light">
       <div className="container-fluid">
-        <NavLink to="/" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="" />
-        </NavLink>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -20,8 +20,8 @@ function Nav() {
           <ul className="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
             <li className="nav-item">
               <NavLink
-              //! İs active probunu içeri alarak true ise tıklanmış sayfayı red yapar
-                style={({ isActive }) => ({ color: isActive && "red" })}
+                //! İs active probunu içeri alarak true ise tıklanmış sayfayı brown yapar(isActive dahili proptur)
+                style={({ isActive }) => ({ color: isActive && "brown" })}
                 to="/"
                 className="nav-link active"
                 aria-current="page"
@@ -32,7 +32,7 @@ function Nav() {
 
             <li className="nav-item">
               <NavLink
-                style={({ isActive }) => ({ color: isActive && "red" })}
+                style={({ isActive }) => ({ color: isActive && "brown" })}
                 to="/people"
                 className="nav-link"
                 aria-current="page"
@@ -43,7 +43,7 @@ function Nav() {
 
             <li className="nav-item">
               <NavLink
-                style={({ isActive }) => ({ color: isActive && "red" })}
+                style={({ isActive }) => ({ color: isActive && "brown" })}
                 to="/paths"
                 className="nav-link"
                 aria-current="page"
@@ -53,7 +53,7 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink
-                style={({ isActive }) => ({ color: isActive && "red" })}
+                style={({ isActive }) => ({ color: isActive && "brown" })}
                 to="/contact"
                 className="nav-link"
                 aria-current="page"
