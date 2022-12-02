@@ -13,15 +13,18 @@ const App = () => {
         {/* container componentine sadece bg yi gönderdiği için grey rengini değil kırmızı yı alacaktır */}
         <HeaderText color="red"> Styled Component</HeaderText>
         <Button primary>Save</Button>
-        {/* primary bir prop ismi olup değişkenlik gösterebilir ek olarak yukarıdaki sade yazım ile primary={primary} aynıdır */}
+        {/* primary bir prop ismi olup değişkenlik gösterebilir ek olarak yukarıdaki sade yazım ile props={primary} aynıdır */}
         <Button>Click</Button>
         {/* Oluşturulan TomatoButton componenti Button dan yaratılmışdır  */}
         <TomatoButton>Send</TomatoButton>
         <TomatoButton primary>Submit</TomatoButton>
       </Container>
-      <Container>
+      <Container bg="lightgray">
         <StyledLink href="https://www.google.com" target="_blank">
-          Go side
+          Google
+        </StyledLink>
+        <StyledLink secondary href="https://www.reactjs.org" target="_blank">
+          React
         </StyledLink>
       </Container>
     </>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  background: ${({ bg }) => bg || "red"};
+  background: ${({ bg }) => bg || "yellow"};
   /* container den gelen prop havada destructuring yapılarak || pipe ile içinde değer var ise değeri yok ise redi background: olarak tanımlattık */
   display: flex;
   flex-direction: column;
