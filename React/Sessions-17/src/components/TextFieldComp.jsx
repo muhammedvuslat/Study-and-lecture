@@ -13,7 +13,7 @@ const TextFieldComp = () => {
         <Typography variant="h4" color="error" align="center" mt={4}>
           Text Field
         </Typography>
-        <Box sx={{ mt: 4 }}>
+        <Box sx={{ mt: 4, textAlign: "center" }}>
           <TextField
             // margin="dense" margin="normal" gibi  MUI nun özel marginide kullanılabilinir
             id="email"
@@ -33,6 +33,9 @@ const TextFieldComp = () => {
             helperText={error && "Incorrect  password"}
             sx={{ mt: 2 }}
           />
+          <Button variant="contained" color="warning" sx={{ mt: 2 }}>
+            Submit
+          </Button>
         </Box>
       </Container>
     </div>
