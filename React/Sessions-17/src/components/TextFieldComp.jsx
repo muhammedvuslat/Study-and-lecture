@@ -10,7 +10,7 @@ const TextFieldComp = () => {
   return (
     <div>
       <Container>
-        <Typography variant="h4" color="error" align="center" mt={4}>
+        <Typography variant="h4" color="secondary.dark" align="center" mt={4}>
           Text Field
         </Typography>
         <Box sx={{ mt: 4, textAlign: "center" }}>
@@ -22,6 +22,7 @@ const TextFieldComp = () => {
             fullWidth
             error={error}
             helperText={error && "Incorrect email format"}
+            /* default olarak primarynın rengini alır */
           />
 
           <TextField
