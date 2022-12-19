@@ -19,8 +19,6 @@ print("---------------------------------------------------------------- ")
         #? Overriding methods
 #* extra subjects
 #* Inner class
-
-
 #! What is OOP?
 """ # Object Oriented programming (OOP) is a programming paradigm that relies on the concept of classes and objects.
 # It is used to structure a software program into simple, reusable pieces of code blueprints (usually called classes), which are used to create individual instances of objects.
@@ -70,27 +68,90 @@ person1.location = "Turkey"  #Farklı instance üzerinden oluşturulan variablel
 print(person1.location)"""
 
 #! SELF keyword and methods
-
+"""
 class Person:
     company = "Apple"
+    #! def test(): # Hata vereceği konum bookmark işaretli
+    #!   print("Test")
     def test(self): #self parametresi ismi önemli ve özel değildir person1 veya 2 tarafından test çağırıldığıda parametre belirteci olarak kullanılır, fakat genel olarark bu parametre self olarak belirtilir.
         print("Test")
+    def set_details(aaa,name,age): #Setleme metodu ile parametre alma aaa da olduğu gibi parametri gönderimini belli eden aaa parametre ismide fark etmeyecektir
+        aaa.name = name
+        aaa.age = age
+    def get_details(self):
+        print(f"Name: {self.name} - Age: {self.age}")
+
+    @staticmethod #! İnstancelara göre değişmeyen bir metod tasarlandığında default dışı hareket etmesi ve parametre gerektirmeyip hata vermemesi için
+    def salute():
+        print("Hi There")
+    
 
 person1 = Person()
 person2 = Person()
 #! person1.test() = Person.test(person1) ile arka planda aynı işleme sahiptir test methoduna parametre olarark person 1 gönderilidiğinden dolayı test(self) yazılmadığında parametre hatası verecektir.
+#? Person.test(person1) kodundaki person1 parametresi gönderilip yukarda test(self) parametresi ile yakalanır self ile person1 aynı olmak zorunda değildir
 person1.test()
-
-
-
-
-
-
-
-
-
+person2.test()
+person1.name = "Steve"
+person1.age = 25 
+person1.get_details()
+# person2.name = "Morgan"
+# person2.age = 18
+person2.set_details("Morgan",21) #! Setleme metodu ile parametre gönderme 
+person2.get_details()
+person1.salute()
+"""
 
 #! special methods (dunder methods)
+
+class Person:
+    company = "Apple"
+    person_count = 0 #! Bu değişken ile Person Classı altnda kaç adet instance oluşturulduğunu öğrennmek için saayaç başlatılır
+
+    #! Parametreleri direkt olarark göndermek için daha önce kullandığımız set_details yerine özel __init__ metodu kullanılır aynı zamanda çağırılmadan kendini otomatik oluşturan metod
+
+    def __init__(self,name,age, gender="Male"): #! Gender da olduğu gibi defult parametre yazılabilir. 
+        self.name = name
+        self.age = age
+        self.gender = gender
+        Person.person_count = Person.person_count +1 #! instance sayaç arttırımı
+        
+        
+
+    #? def set_details(self,name,age):
+    #?    self.name = name
+    #?    self.age = age
+
+    def get_details(self):
+        print(f"Name:{self.name} / Age: {self.age}/ Gender: {self.gender }")
+        print(f"İnstance count:{Person.person_count}")
+
+
+#! İnit özet taımlıı metod ile direkt olarak parametre gönderiyoruz
+person1 = Person("Cedric", 8) #! Gender Default parametre olduundan dolayı parametre olarak yazılmadığında hata vermeyecektir.
+person1.get_details()
+#! Person classında __init_- metodu otomatik olarak oluşturulduğu ve çağırıldığı için aşağıda olduğu gibi person2 parametresiz gönderildiğinde hata verecektir
+#! person2 = Person()
+person2 = Person("Chen", 8)
+person2.get_details() # Count ile kaç adet instance olduğu bilgisini aldık
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 print("---------------------------------------------------------------- ")
