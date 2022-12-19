@@ -215,9 +215,9 @@ print(person2._Person__number) #! İçeriden  Farklı bir instance ile  ulaşıl
     
 # kullanıcı gereksiz detaylardan ve bilmesine ihtiyaç olmayan yapıdan uzaklaştırarak yormamak - soyutlama
 
-liste = [2,6,5,9,4]
+"""liste = [2,6,5,9,4]
 liste.sort()
-print(liste) # sort metodu karışık olan listeyi düzenlenler ama biz arka tarafında neler olup bittiğini bilmeyiz aynı bu şekilde bazı kod ve metodların soyutlanması için kullanır.
+print(liste) """# sort metodu karışık olan listeyi düzenlenler ama biz arka tarafında neler olup bittiğini bilmeyiz aynı bu şekilde bazı kod ve metodların soyutlanması için kullanır.
 
 #     class Meta:
 #         abstract = True
@@ -227,4 +227,69 @@ print(liste) # sort metodu karışık olan listeyi düzenlenler ama biz arka tar
         
 # class Answer(Update):
 #     pass """
+
+
+#? Inheritance
+# Inheritance (Kalıtım), bir classın  ve başka bir classın methods larının kullanıldığı prosedürdür.propertielerinin ve methodlarının miras alınan classın, Parent classın olarak bilinir.
+
+class Person:
+    company = "Microsoft"
+
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    
+    def __str__(self):
+        return f"{self.name},{self.age}"
+    def get_details(self):
+        print(f"{self.name},{self.age}")
+
+class Employe(Person):
+    
+    def __init__(self, name, age,path):
+        # self.name = name
+        # self.age = age
+        super().__init__(name,age) # Name ve age i üst satırdaki gibi baştan yazmak yerine parentdan almamızı sağlar 
+        self.path = path
+    def get_details(self):
+        super().get_details() # init de ki gibi baştan yazmak yerine parentdan almamızı sağlar 
+        print(self.path)
+
+# employe classına yazılan yeni init sonrasında employe de init olduğu için artık Person classına gidip kontrol yapmayacak aynı instancelarda ki gibi
+emp1 = Employe("Chen",8.5 ,"Web Developer")
+emp1.get_details()
+print(emp1.company)
+        
+#? Polymorphism
+#* Overriding:
+# Overriding is an object-oriented programming feature that enables a child class to provide different implementation for a method that is already defined and/or implemented in its parent class or one of its parent classes.
+
+#* overloading:
+# Two or more methods have the same name but different numbers of parameters or different types of parameters, or both. These methods are called overloaded methods and this is called method overloading. #! the concept of overloading simply does not apply to python(give parameters None default value - or - multipledispatch package)
+
+
+##56:55##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 print("---------------------------------------------------------------- ")
+
+
