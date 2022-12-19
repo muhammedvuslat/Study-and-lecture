@@ -104,11 +104,14 @@ person1.salute()
 
 #! special methods (dunder methods)
 
+#? Special __init__ Methods
+#Python’da bir nesne çağırdığınızda otomatik olarak çalışacak ve sadece nesneyi ilk oluşturduğunuzda çalışacak olan bir fonksiyon tanımlayabilirsiniz. Bu fonksiyonun adı Python yapımcıları tarafından __init__() olarak belirlenmiş. Dışarıdan ulaşılmasını istediğimiz her fonksiyona self parametresini eklememiz gerektiğini de belirtelim.
+""""
 class Person:
     company = "Apple"
     person_count = 0 #! Bu değişken ile Person Classı altnda kaç adet instance oluşturulduğunu öğrennmek için saayaç başlatılır
 
-    #! Parametreleri direkt olarark göndermek için daha önce kullandığımız set_details yerine özel __init__ metodu kullanılır aynı zamanda çağırılmadan kendini otomatik oluşturan metod
+    #! Parametreleri direkt olarark göndermek için daha önce kullandığımız set_details yerine özel __init__ metodu kullanılır aynı zamanda her instace set edildiğinde çağırılmadan kendini otomatik oluşturan metod
 
     def __init__(self,name,age, gender="Male"): #! Gender da olduğu gibi defult parametre yazılabilir. 
         self.name = name
@@ -134,15 +137,83 @@ person1.get_details()
 #! person2 = Person()
 person2 = Person("Chen", 8)
 person2.get_details() # Count ile kaç adet instance olduğu bilgisini aldık
+"""
+
+#? Special __str__ Methods
+""" # Bu yöntem, nesnenin dize temsilini döndürür. Bu yöntem, bir nesne üzerinde print() veya str() işlevi çağrıldığında çağrılır. Bu yöntem, String nesnesini döndürmelidir.
+class Person:
+    company = "Apple"
+    person_count = 0
+    
+    def __init__(self, name, age, gender="male"):
+        self.name = name
+        self.age = age
+        self.gender = gender
+        Person.person_count = Person.person_count +1
+    def __str__(self):
+        return f"{self.name} - {self.age}"
+    
+        
+    def get_details(self):
+        print(f"{self.name} - {self.age} - {self.gender}")
+    
+person1 = Person("victor", 33)
+person2 = Person("henry", 33)
+
+# normal zamanda __str__ metdou class içerisine alınmadıın da terminal de clasını ve id sini döndüren <__main__.Person object at 0x00000125B9A64FD0> şu şekilde bir çıktı alırız 
+# fakat __str__ metdu ile belirtilen değişkenleri return eder ve bu sayede print edebiliriz.
+# __str__ metodu instance print() yada str() olarak çağırıldığında çalışacaktır
+print(person1)
+print(person2)"""
+ 
+#! OOP Principles (4 pillars)
+    #? Encapsulation
+    #? Abstraction
+    #? Inheritance
+    #? Polymorphism
 
 
+#? Encapsulation
+ # kullanıcı tarafından sınıfların, verilerin ve metodların ne kadarının görüntülenebileceğini, ne kadarının değiştirilebileceğini belirlendiğimiz yapı
 
+    # public - private - protected (python veya js'de değil)
+    #?genel -    özel -  korumalı(yetkiye dayalı)
+    # python'da tam bir kapsülleme yok
 
+""" class Person:
+    company = "Apple"
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self._id = 5000 #!! _ ile id nin private olduğunu bildirdik bunu değiştirme ibaresi (best Practice)
+        self.__number = 200 #! iki alt çizgi __number tam private dışardan ulaşılmaz
+        
 
+    def __str__(self):
+        return f"{self.name} - {self.age}"
+    
+        
+    def get_details(self):
+        print(f"{self.name} - {self.age}")
+    
+person1 = Person("victor", 33)
+print(person1._id) #!
+person1._id=400    #! _id private olmasına ramen oknur yazılır değiştirilir sadece tek alt çizgi ile özel olduğu ifade edilir ve müdehale edilmemesi gerektiği bildirilir
+print(person1._id) #!
 
+# print(person1.__number) # __number iki alt çizgili olduu için bulunmadı hatası verecek
+print(person1._Person__number) #! Bu şekilde içerden ulaşım sağlanabilinir
 
+person2= Person("hı",22)
+print(person2._Person__number) #! İçeriden  Farklı bir instance ile  ulaşılmış örnek 
+"""
 
-
+#? Abstraction
+# Soyutlama, bir uygulamanın iç karmaşık ayrıntılarını dış dünyadan gizleme işlemidir. Soyutlama, şeyleri basit terimlerle tanımlamak için kullanılır. Uygulama ve istemci programları arasında bir sınır oluşturmak için kullanılır.
+# gerçek hayattaki kahve makinesi gibi. nasıl çalıştığını bilmene gerek yok ama işlevselliğini biliyorsun
+    
+# kullanıcı gereksiz detaylardan ve bilmesine ihtiyaç olmayan yapıdan uzaklaştırarak yormamak - soyutlama
 
 
 
