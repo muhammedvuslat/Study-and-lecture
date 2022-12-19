@@ -176,8 +176,8 @@ print(person2)"""
 #? Encapsulation
  # kullanıcı tarafından sınıfların, verilerin ve metodların ne kadarının görüntülenebileceğini, ne kadarının değiştirilebileceğini belirlendiğimiz yapı
 
-    # public - private - protected (python veya js'de değil)
-    #?genel -    özel -  korumalı(yetkiye dayalı)
+    #   public - private - protected (python veya js'de değil)
+        #?genel -    özel -  korumalı(yetkiye dayalı)
     # python'da tam bir kapsülleme yok
 
 """ class Person:
@@ -215,14 +215,16 @@ print(person2._Person__number) #! İçeriden  Farklı bir instance ile  ulaşıl
     
 # kullanıcı gereksiz detaylardan ve bilmesine ihtiyaç olmayan yapıdan uzaklaştırarak yormamak - soyutlama
 
+liste = [2,6,5,9,4]
+liste.sort()
+print(liste) # sort metodu karışık olan listeyi düzenlenler ama biz arka tarafında neler olup bittiğini bilmeyiz aynı bu şekilde bazı kod ve metodların soyutlanması için kullanır.
 
-
-
-
-
-
-
-
-
-
+#     class Meta:
+#         abstract = True
+        
+# class Question(Update):
+#     pass
+        
+# class Answer(Update):
+#     pass """
 print("---------------------------------------------------------------- ")
