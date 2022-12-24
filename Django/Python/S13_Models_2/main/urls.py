@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from first_app.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home) # Taksim ile route belirtilmediğinde home page direkt olarak atanır 8000 portunda direkt olarak yazı gözükecektir
 ]
