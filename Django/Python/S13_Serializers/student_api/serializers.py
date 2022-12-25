@@ -29,3 +29,7 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = "__all__"
+        #! Fields ları filtremek istediğimizde şu şekilde haraket ederiz
+        #fields = ["last_name" , "first_name"]
+        #! yazılma sırasına göre çıktı verecektir.
+        #exclude = ["number"] #! Number dışındakilerin hepsini alacaktır
