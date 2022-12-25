@@ -26,10 +26,20 @@ from .models import Student
 #!- .create() ve .update()'in basit varsayılan uygulamalarını içerir.
 
 class StudentSerializer(serializers.ModelSerializer):
+
+    born_year = serializers.SerializerMethodField()
+    # SerializerMethodField methodu bizden bir etod beklemekte ve alt satırlarda get_born_year ile yeni bir verimizi database işlemeden front ende göndermiş olduk. aynı zamanda Meta clasında bu eklenen datayı bbelirtmemmiz gerekli
     class Meta:
-        model = Student
-        fields = "__all__"
+        model = Student       
+        fields = ["id","first_name", "last_name","number", "age", "born_year"]
+
         #! Fields ları filtremek istediğimizde şu şekilde haraket ederiz
         #fields = ["last_name" , "first_name"]
         #! yazılma sırasına göre çıktı verecektir.
         #exclude = ["number"] #! Number dışındakilerin hepsini alacaktır
+    def get_born_year(self,obj):
+        import datetime
+        current_time = datetime.datetime.now() #metodla şimdi ki zamanı aldık
+        return current_time.year - obj.age # get işlemi olarak tablodaki age i şimdi ki zamandan çıkartıp doğum yılına ulaştık
+      
+    
