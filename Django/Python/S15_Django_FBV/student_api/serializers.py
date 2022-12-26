@@ -49,7 +49,7 @@ class StudentSerializer(serializers.ModelSerializer):
         return current_time.year - obj.age # get işlemi olarak tablodaki age i şimdi ki zamandan çıkartıp doğum yılına ulaştık
 class PathSerializer(serializers.ModelSerializer):
 
-    #students = StudentSerializer(many=True)
+    students = StudentSerializer(many=True)
     #! Studenet tablosunu pathın altında çektiğimizde api dan bu şekilde bir çıktı alınır
     '''{
         "id": 1,
@@ -67,11 +67,11 @@ class PathSerializer(serializers.ModelSerializer):
             }
         ]
     }''' 
-    students = serializers.HyperlinkedRelatedField(
+    '''students = serializers.HyperlinkedRelatedField(
         many=True,
         read_only=True,
         view_name='detail'
-    )
+    )'''
    
     
     class Meta:
