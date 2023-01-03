@@ -12,8 +12,12 @@ from .views import (
     # student_api_get_update_delete
 
     #! Class Based Views
-    StudentListCreate,
-    StudentDetail
+    # StudentListCreate,
+    # StudentDetail,
+    # StudentGAV,
+    # StudentDetailGAV,
+    StudentCV,
+    StudentDetailCV
 
 ) 
 
@@ -28,8 +32,16 @@ urlpatterns = [
     # path("student-delete/<int:pk>/", student_delete, name='delete'),
     # path('student/', student_api),
     # path('student/<int:pk>', student_api_get_update_delete)
-    #!Class Based Views
-    path('student/', StudentListCreate.as_view()),
-    path('student/<int:pk>', StudentDetail.as_view())
+    #!Class Based Views(API View)
+    # path('student/', StudentListCreate.as_view()),
+    # path('student/<int:pk>', StudentDetail.as_view())
+    #!Class Based Views(GenericAPI View)
+    # path('student/', StudentGAV.as_view()),
+    # path('student/<int:pk>', StudentDetailGAV.as_view())
+    #!Class Based Views(Concrete View)
+    path('student/', StudentCV.as_view()),
+    path('student/<int:pk>', StudentDetailCV.as_view())
+
+
 
 ]

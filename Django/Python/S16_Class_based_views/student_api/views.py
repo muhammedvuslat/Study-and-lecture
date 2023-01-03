@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView, mixins
+from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView,RetrieveUpdateDestroyAPIView
 
 #! My import
 from .models import Student, Path
@@ -184,19 +184,30 @@ class StudentGAV(mixins.ListModelMixin,mixins.CreateModelMixin, GenericAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-    def list(self,request,*args,**kwargs):
+    def get(self,request,*args,**kwargs):
         return self.list(request,*args,**kwargs)
-    def create(self,request,*args, **kwargs):
+    def post(self,request,*args, **kwargs):
         return self.create(request,*args, **kwargs)
 
 class StudentDetailGAV(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, GenericAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-    def retrieve(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-    def update(self, request, *args, **kwargs):
+    def put(self, request, *args, **kwargs):
          return self.update(request, *args, **kwargs)
-    def destroy(self, request, *args, **kwargs):
+    def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-  
+
+
+#! Concrete View 
+# Concrete View hakkında detaylı bilgi(https://www.django-rest-framework.org/api-guide/generic-views/#concrete-view-classes)
+#! ListCreateAPIView ve RetrieveUpdateDestroyAPIView import edilmeli
+class StudentCV(ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class= StudentSerializer
+
+class StudentDetailCV(RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
