@@ -1,11 +1,13 @@
 
 #! Framework İmport
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
+
 
 #! My import
 from .models import Student, Path
@@ -211,3 +213,36 @@ class StudentCV(ListCreateAPIView):
 class StudentDetailCV(RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+#! ViewSets
+# - Django REST Framework, ViewSet adı verilen tek bir classta bir dizi ilgili view için mantığı birleştirmenize olanak tanır.
+
+# - Tipik olarak, views'ları urlconf'taki bir view kümesine açıkça kaydetmek yerine, view kümesini sizin için urlconf'u otomatik olarak belirleyen bir Router sınıfına kaydedersiniz.
+
+# ViewSet sınıfını kullanmanın View sınıfını kullanmaya göre iki ana avantajı vardır.
+
+# - Tekrarlanan mantık tek bir classta birleştirilebilir. Yukarıdaki örnekte, sorgu kümesini yalnızca bir kez belirtmemiz yeterlidir ve birden çok views'da  kullanılacaktır.
+# - Router'larler kullanarak, artık URL yapılandırmasını kendi başımıza bağlamaklar uğraşmamıza gerek yok.
+
+# Bunların her ikisi de bir değiş tokuşla gelir. Normal views'ları ve URL yapılandırmalarını kullanmak daha açıktır ve size daha fazla kontrol sağlar. Hızlı bir şekilde çalışmaya başlamak istiyorsanız veya büyük bir API'niz varsa ve baştan sona tutarlı bir URL yapılandırması uygulamak istiyorsanız, ViewSet'ler yardımcı olur.
+
+class StudentMVS(ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    @action(detail=False,methods=['GET'])
+    def student_count(self,request):
+        count = {
+            "Student-Count:" : self.queryset.count()
+        }
+        return Response(count)
+
+class PathMVS(ModelViewSet):
+    queryset = Path.objects.all()
+    serializer_class = PathSerializer
+
+    @action(detail=True)
+    def student_names(self,request,pk=None):
+        path =self.get_object()
+        students = path.students.all()
+        return Response([i.first_name for i in students])

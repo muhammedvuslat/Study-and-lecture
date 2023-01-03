@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path,include
+from rest_framework import routers
 from .views import (
 
     #! Function Based Views
@@ -12,16 +13,27 @@ from .views import (
     # student_api_get_update_delete
 
     #! Class Based Views
+    #? APIVIEW
     # StudentListCreate,
     # StudentDetail,
+    #? GENERİCAPI View
     # StudentGAV,
     # StudentDetailGAV,
-    StudentCV,
-    StudentDetailCV
+    #? Concrete View 
+    # StudentCV,
+    # StudentDetailCV,
+    #? ViewSets
+    StudentMVS,
+    PathMVS
+
 
 ) 
+#! ViewSets
+router = routers.DefaultRouter()
+router.register("student",StudentMVS)
+router.register("path", PathMVS)
 
- 
+
 urlpatterns = [
     #!Function Based Views
     path("", home),
@@ -39,8 +51,9 @@ urlpatterns = [
     # path('student/', StudentGAV.as_view()),
     # path('student/<int:pk>', StudentDetailGAV.as_view())
     #!Class Based Views(Concrete View)
-    path('student/', StudentCV.as_view()),
-    path('student/<int:pk>', StudentDetailCV.as_view())
+    # path('student/', StudentCV.as_view()),
+    # path('student/<int:pk>', StudentDetailCV.as_view())
+    path("",include(router.urls))
 
 
 
