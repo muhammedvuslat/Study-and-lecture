@@ -4,10 +4,13 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 
 #! My import
 from .models import Todo
 from .serializers import TodoSerializer
+#! <<<<<<<<Function Based Views (FBV) >>>>>>>>
 
 @api_view()
 def todo_home(request):
@@ -45,4 +48,18 @@ def todo_detail(request, id): #? Datadan aldığımız id
     elif request.method == 'DELETE':
         todo.delete()
         return Response({'message': 'Todo deleted succesfuly'})
+
+#! <<<<<<<<Aynı işlemleri Class Based Views (CBV) ile gerçekleştirelim>>>>>>>>
+class Todos(ListCreateAPIView): #! Genel  Get ve post işlemleri için class
+    queryset = Todo.objects.filter(is_done=False)
+    serializer_class = TodoSerializer
+
+class TodoDetail(RetrieveUpdateDestroyAPIView): #! Detail id li olarak get put delete işlemleri class ı
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+#! <<<<<<<<Aynı işlemleri ViewSet ModelViewSet() ile gerçekleştirelim>>>>>>>
+class TodoMVS(ModelViewSet):
+    queryset = Todo.objects.filter(is_done=False)
+    serializer_class = TodoSerializer
     
