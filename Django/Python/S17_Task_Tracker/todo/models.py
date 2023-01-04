@@ -8,8 +8,8 @@ class Todo(models.Model):
         (3, 'Low')
     )
     task = models.CharField(max_length=50) 
-    description = models.TextField(blank=True) #? vlank zorunlu olmayan
-    priority = models.SmallIntegerField(choices=PRIORITY,default=3) #? Choices Otomatik olarak seçimleri gelmesi
+    description = models.TextField(blank=True) #? Blank zorunlu olmayan
+    priority = models.SmallIntegerField(choices=PRIORITY,default=3) #? Choices Otomatik olarak belirtilen seçimleri getirir yani numara yazılması yerine yukarıdaki tanımları seçtirir
     is_done = models.BooleanField(default=False) #? Yeni yaratılan bir task bitmiş olamaz başlangıcta false olması sebebi
     updatea_date = models.DateTimeField(auto_now=True) #? Update işlemlerinin tarih-saatinin alana kaydeder
     created_date = models.DateTimeField(auto_now_add=True) #? Ekleme oluşturma işleminde tarih-saat ekleyecektir
