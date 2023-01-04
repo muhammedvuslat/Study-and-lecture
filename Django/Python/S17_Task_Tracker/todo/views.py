@@ -21,7 +21,7 @@ def todo_home(request):
 def todo_list_create(request):
     if request.method == 'GET':
         todos = Todo.objects.filter(is_done=False) #! Get işlemi normalde objects.all() şeklinde yapılır fakat biz tamamlanmayanları çekmek istediğim için is_done=False olarak işlem yaptık
-        serializer = TodoSerializer(todos, many=True) #! queryset olarak gelen data yapısı serializer değişkenine TodoSerializer aracılığıyla alınarak json veri tipine döner. many=True birden fazla queryset olacağı için yazılır
+        serializer = TodoSerializer(todos, many=True) #! queryset olarak gelen data yapısı serializer değişkenine TodoSerializer aracılığıyla alınarak json veri tipine döner. many=True birden fazla queryset olacağı için yazılır parantez içerisindeki todos alınan dataları serializer sa sokar
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer =TodoSerializer(data=request.data) #! Post işleminde dışardan örneğin fron-end'den bir data geldiğinden dolayı bunu serializers a iletiyoruz 
