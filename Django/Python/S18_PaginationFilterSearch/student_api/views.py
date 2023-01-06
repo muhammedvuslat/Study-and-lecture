@@ -12,6 +12,10 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Student, Path
 from .serializers import StudentSerializer, PathSerializer
 
+# Pagination (PageNumberPagination) İmport 
+# from .pagination import CustomPageNumberPagination #! Bütün paginationları kullanmak için aşağıdaki yöntem
+from .pagination import *
+
 
 
 
@@ -235,7 +239,7 @@ class StudentDetailGAV(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixin
 
 class StudentCV(ListCreateAPIView):
     
-    queryset = Student.objects.all()
+    queryset = Student.objects.all()    
     serializer_class = StudentSerializer
     
 class StudentDetailCV(RetrieveUpdateDestroyAPIView):
@@ -262,6 +266,9 @@ class StudentMVS(ModelViewSet):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    # pagination_class = CustomPageNumberPagination #! PageNumberPagination İçin custom class
+    pagination_class = CustomLimitOffsetPagination #! LimitOffsetPagination İçin custom class
+    
     
     @action(detail=False, methods=["GET"])
     def student_count(self, request):
