@@ -133,8 +133,13 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 30, #? Sayfada görünmesini istediğimiz API sayısını belirlediğimiz alan.
     #! PageNumberPagination
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE' : 30
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'DEFAULT_LİMİT': 20, #! Sayfa başına ekran da görünmesini istediğimiz limitlenmiş API veri sayısı
+    #! Cursor Pagination    
+    # 'PAGE_SIZE':30, #! Sayfa başına ekran da görünmesini istediğimiz limitlenmiş API veri sayısı
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',  
+    
+
 
 
 

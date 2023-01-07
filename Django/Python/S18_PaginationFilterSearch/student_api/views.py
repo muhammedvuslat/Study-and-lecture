@@ -267,7 +267,8 @@ class StudentMVS(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     # pagination_class = CustomPageNumberPagination #! PageNumberPagination İçin custom class
-    pagination_class = CustomLimitOffsetPagination #! LimitOffsetPagination İçin custom class
+    # pagination_class = CustomLimitOffsetPagination #! LimitOffsetPagination İçin custom class
+    pagination_class = CustomCursorPagination #! LimitOffsetPagination İçin custom class
     
     
     @action(detail=False, methods=["GET"])
