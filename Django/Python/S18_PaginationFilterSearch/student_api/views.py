@@ -12,9 +12,13 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Student, Path
 from .serializers import StudentSerializer, PathSerializer
 
-# Pagination (PageNumberPagination) İmport 
+# Pagination (PageNumberPagination) Thirparty İmport 
 # from .pagination import CustomPageNumberPagination #! Bütün paginationları kullanmak için aşağıdaki yöntem
 from .pagination import *
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter , OrderingFilter
+
+
 
 
 
@@ -266,9 +270,14 @@ class StudentMVS(ModelViewSet):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    # pagination_class = CustomPageNumberPagination #! PageNumberPagination İçin custom class
+    pagination_class = CustomPageNumberPagination #! PageNumberPagination İçin custom class / Limit görmek için Custom pagei geri açıyotuz
     # pagination_class = CustomLimitOffsetPagination #! LimitOffsetPagination İçin custom class
-    pagination_class = CustomCursorPagination #! LimitOffsetPagination İçin custom class
+    # pagination_class = CustomCursorPagination #! LimitOffsetPagination İçin custom class
+    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter] #! Globalde değil local kullanım için eklendi. importunu kontrol et
+    filterset_fields=['id','first_name','last_name'] #! İsim ve soy isim yazarak filtreleme Eşit olan kayıtları getirir
+    search_fields=['first_name','last_name'] #! Arama sekmesinde first name sürunundan arama sağlar ve birbir eşleşen değil barındandıran ifadeleri gösterir|| Seçenekler kapsamında tek bir alan verilerek biz sadece aramayı hangi alanda olacağını belirtiriz
+     
+
     
     
     @action(detail=False, methods=["GET"])
@@ -276,7 +285,7 @@ class StudentMVS(ModelViewSet):
         count = {
             "student-count" : self.queryset.count()
         }
-        return Response(count)
+        return Response(count) 
     
     
 class PathMVS(ModelViewSet):

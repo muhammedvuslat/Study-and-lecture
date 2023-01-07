@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # my_framework
+    'rest_framework',
+    'django_filters',
 
     # my_apps
     'student_api',
-    'rest_framework',
+    
 ]
 
 MIDDLEWARE = [
@@ -138,10 +141,7 @@ REST_FRAMEWORK = {
     #! Cursor Pagination    
     # 'PAGE_SIZE':30, #! Sayfa başına ekran da görünmesini istediğimiz limitlenmiş API veri sayısı
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',  
-    
-
-
-
-
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'] #! Filter ileşlemleri için
+    # 'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter','rest_framework.filters.OrderingFilter'] #! Search ve sıralama işlemleri için
 
 }
