@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     # my_apps
     'student_api',
+    'user'
     # Token Aut
     'rest_framework.authtoken',
    
