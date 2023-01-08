@@ -6,14 +6,15 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework.permissions import (
+    IsAuthenticated, 
+    IsAdminUser,
+    IsAuthenticatedOrReadOnly,
+    )
 
 # my imports
 from .models import Student, Path
 from .serializers import StudentSerializer, PathSerializer
-
-
-
 
 #!#################### FUNCTION BASED VIEWS ########################################
 
@@ -21,13 +22,13 @@ from .serializers import StudentSerializer, PathSerializer
 def home(requst):
     return Response({'home': 'This is home page...'})
 
-
-# http methods ----------->
+# http methods ------Notes----->
+'''
 # - GET (DB den veri çağırma, public)
 # - POST(DB de değişklik, create, private)
 # - PUT (DB DE KAYIT DEĞİŞKLİĞİ, private)
 # - delete (dB de kayıt silme)
-# - patch (kısmi update)
+# - patch (kısmi update)'''
 
 @api_view(['GET'])
 def students_list(request):
@@ -37,7 +38,6 @@ def students_list(request):
     # print(serializer)
     # print(serializer.data)
     return Response(serializer.data)
-
 
 @api_view(['POST'])
 def student_create(request):
@@ -50,7 +50,6 @@ def student_create(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['GET'])
 def student_detail(request, pk):
 
@@ -58,7 +57,6 @@ def student_detail(request, pk):
     # student = Student.objects.get(id=pk)
     serializer = StudentSerializer(student)
     return Response(serializer.data)
-
 
 @api_view(['PUT'])
 def student_update(request, pk):
@@ -72,7 +70,6 @@ def student_update(request, pk):
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['DELETE'])
 def student_delete(request, pk):
     student = get_object_or_404(Student, id=pk)
@@ -81,7 +78,6 @@ def student_delete(request, pk):
         "message": 'Student deleted succesfully....'
     }
     return Response(message)
-
 
 #############################################################
 
@@ -99,7 +95,6 @@ def student_api(request):
                 "message": f"Student {serializer.validated_data.get('first_name')} saved successfully!"}
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
 def student_api_get_update_delete(request, pk):
@@ -133,7 +128,6 @@ def student_api_get_update_delete(request, pk):
         }
         return Response(data)
     
-
 #!#################### CLASS BASED VIEWS ########################################
 
 #! APIVIEW
@@ -153,7 +147,6 @@ class StudentListCreate(APIView):
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-
 class StudentDetail(APIView):
     
     def get_obj(self, pk):
@@ -183,7 +176,6 @@ class StudentDetail(APIView):
         }
         return Response(data)
     
-
 #! GENERICAPIView and Mixins
 """ #? GenericApıView
 # One of the key benefits of class-based views is the way they allow you to compose bits of reusable behavior. REST framework takes advantage of this by providing a number of pre-built views that provide for commonly used patterns.
@@ -229,8 +221,7 @@ class StudentDetailGAV(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixin
     
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs) """
-    
-    
+      
 #! Concrete Views
 
 class StudentCV(ListCreateAPIView):
@@ -244,8 +235,8 @@ class StudentDetailCV(RetrieveUpdateDestroyAPIView):
     serializer_class = StudentSerializer
     
 
-#! ViewSets
-
+#! ViewSets(Notes) 
+'''
 # - Django REST framework allows you to combine the logic for a set of related views in a single class, called a ViewSet. 
 
 # - Typically, rather than explicitly registering the views in a viewset in the urlconf, you'll register the viewset with a router class, that automatically determines the urlconf for you.
@@ -255,7 +246,7 @@ class StudentDetailCV(RetrieveUpdateDestroyAPIView):
 #  - Repeated logic can be combined into a single class. In the above example, we only need to specify the queryset once, and it'll be used across multiple views.
 #  - By using routers, we no longer need to deal with wiring up the URL conf ourselves.
 
-# Both of these come with a trade-off. Using regular views and URL confs is more explicit and gives you more control. ViewSets are helpful if you want to get up and running quickly, or when you have a large API and you want to enforce a consistent URL configuration throughout.
+# Both of these come with a trade-off. Using regular views and URL confs is more explicit and gives you more control. ViewSets are helpful if you want to get up and running quickly, or when you have a large API and you want to enforce a consistent URL configuration throughout.'''
 
 from .pagination import *
 from django_filters.rest_framework import DjangoFilterBackend
@@ -271,6 +262,10 @@ class StudentMVS(ModelViewSet):
     filter_backends=[DjangoFilterBackend,SearchFilter,OrderingFilter]
     filterset_fields=['id','first_name','last_name']
     search_fields=['first_name','last_name']
+    #Authantiocation & Permissons 
+    # permission_classes = [IsAuthenticated] #! permisson bu end pointe kimin ulaşabileceğini belirtir (IsAuthenticated) kimlik doğrulaması yapan 
+    permission_classes = [IsAdminUser] #! Admin ise api erişebilsin ve işlem yapabilsin (Token için açtık)
+    # permission_classes = [IsAuthenticatedOrReadOnly] #! Okuma işlemleri gerçekleştirilebilinir fakat diğer işlemler(Crate,delete,vb.) için admin yetkisi ister (Daha sonra token işlemleri için Bu bölümüde yoruma aldık)
 
     @action(detail=False, methods=["GET"])
     def student_count(self, request):
