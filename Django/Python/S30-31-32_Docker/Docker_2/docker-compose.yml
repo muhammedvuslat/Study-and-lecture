@@ -1,28 +1,28 @@
-# version: "3.9" # optional
+# version: "3.9" # opsiyonel özellik belirtilmez ise son versyonu kullanır
 
-services:
-
+services: # kaç tane app varsa ve dockerize edilecek ise services alanı altında toplanır
   frontend:
-    container_name: frontend
+    # container_name: frontend
     image: docker-compose-fronted
     build: ./frontend
     ports:
       - 3000:3000
-      - 80:3000
     restart: on-failure
-    depends_on:
-      - backend # first run backend.
+    depends_on: # ilk çalıştırmanın seçimini sağlar frontenden önce backendi çalıştır
+      - backend
+    volumes:
+      - ./frontend:/frontend
 
   backend:
     # container_name: backend # optional (default:key)
-    image: docker-compose-backend # build, if no image
-    build: ./backend # Which folder (project folder) (must be dockerfile in the folder)
-    ports: # external:internal ports
+    image: docker-compose-backend # image yok ise bu image'i oluştur
+    build: ./backend # buil işlemini yapacağı nokta
+    ports: # harici:dahili bağlantı noktaları
       - 8000:8000
-    restart: on-failure # when restart
-    volumes: # external:internal volumes
+    restart: on-failure # restart olma işlemi fail durumunda restart et.
+    volumes: # containerlar içerisinde etkilişim sağlar ve container başlatılıp durdurulduğunda dataların silinmesini önleyerek kaldığı yerden devam eder
       - ./backend/db.sqlite3:/backend/db.sqlite3
-
+      #! localde bulunan ./backend/db.sqlite3 dosyasını : container içerisindeki /backend/db.sqlite3 dosyasına kullan
 # $ docker compose up # compose çalıştır.
 # $ docker compose up -d --build # compose daemon aç ve tekrar build et.
 # $ docker compose down # compose kapat.
