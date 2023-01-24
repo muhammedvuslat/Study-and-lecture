@@ -1,0 +1,128 @@
+- Docker nedir 
+    - Docker, bir containerization platformudur. Bu platform, uygulamaların ve hizmetlerin çalışması için gerekli olan tüm bağımlılıkları ve ayarları içeren kapsayıcılar oluşturmanıza ve yönetmenize olanak tanır. Bu sayede, uygulamalar herhangi bir sistemde veya bulut ortamında aynı şekilde çalışabilir. Böylece, uygulamaların test edilmesi, dağıtılması ve yönetilmesi daha kolay ve çok hızlı hale gelir.
+
+- Docker'ın çıkış amacı nedir 
+    - Docker'ın çıkış amacı, uygulamaların test edilmesi, dağıtılması ve yönetilmesini kolaylaştırmaktır. Docker, uygulamaların çalışması için gerekli olan tüm bağımlılıkları ve ayarları içeren containerlar oluşturmanıza ve yönetmenize olanak tanır. Bu sayede, uygulamalar herhangi bir sistemde veya bulut ortamında aynı şekilde çalışabilir.Docker ile uygulamalar, bir işletim sistemi üzerinde birden fazla container çalıştırılabilir. Bu containerlar ayrı bir işletim sistemi gibi çalışırken gerçekte sadece bir işletim sistemi üzerinde çalışmaktadır. Bu nedenle, Docker ile çalışan containerlar, VM'lerde çalışan sanal makinelere göre daha az kaynak tüketirler ve daha kolay dağıtılabilirler.Docker, ayrıca uygulamaların test edilmesi, dağıtılması ve yönetilmesi için ortak bir platform sağlar. Bu sayede, uygulamaların geliştirilmesi, test edilmesi ve dağıtılması arasındaki aşamalar arasında daha az boşluk oluşur ve uygulamalar daha hızlı ve güvenli bir şekilde piyasaya sunulur.
+
+- VM ve Docker nedir ilişkileri nedir 
+    - Docker ve sanallaştırma (virtualization) arasındaki temel fark, nerede sanallaştırma gerçekleştirildiğidir. Sanallaştırma, fiziksel bir bilgisayarda gerçekleştirilir ve birden fazla sanal makine (VM) oluşturulur. Bu sanal makinelere, fiziksel makine için ayrı ayrı işletim sistemi veya uygulama yüklenebilir.
+    Docker ise, sanal makine yerine, bir işletim sistemi üzerinde çalışan container (kapsayıcı) kullanır. Bu containerlar, uygulamanın çalışması için gerekli olan tüm bağımlılıkları ve ayarları içerir ve bir işletim sistemi üzerinde birden fazla container çalıştırılabilir. Bu sayede, her container ayrı bir işletim sistemi gibi çalışırken, gerçekte sadece bir işletim sistemi üzerinde çalışmaktadır.Docker containerları VM'lerden daha hafiftir ve daha hızlı çalışırlar. Ayrıca, Docker ile çalışan containerlar, VM'lerde çalışan sanal makinelere göre daha az kaynak tüketirler ve daha kolay dağıtılabilirler. Bu nedenle, Docker, özellikle microservices yapılarında veya büyük ölçekli dağıtımlarda kullanılmaktadır.
+
+- Docker image nedir
+    -Docker image, bir container'ın çalışması için gerekli olan dosyaları, bağımlılıkları ve konfigürasyonları içeren bir yapıdır. Docker image, bir container'ın çalışması için gerekli olan tüm dosyaları, bibliyotekleri, araçları ve konfigürasyonları içerir. Docker image, bir container'ın çalıştırılması için gerekli olan tüm bilgileri içererek, o container'ın farklı bir sistemde veya ortamda aynı şekilde çalışmasını sağlar. Docker image'lar, bir container çalıştırmadan önce indirilir ve sistemde saklanır. Daha sonra, bir container çalıştırılırken, sistemdeki Docker image kullanılır.
+
+-Docker engine nedir
+    -Docker engine, 
+        -Docker'ın çekirdeği olarak adlandırılan ve container'ların oluşumunu, yönetimini, dağıtımını ve çalışmasını sağlayan yazılımdır. 
+        -Bir işletim sistemi üzerinde çalışan bir daemon olarak tasarlandı ve Docker komutlarının çalışmasını sağlar. 
+        -Container'ları oluşturmak, çalıştırmak, durdurmak, saklamak ve yönetmek gibi temel işlemleri gerçekleştirir.
+
+- Docker mimarisini şematize edermisin
+    -Docker mimarisi, üç temel bileşenden oluşur:
+        -Docker Daemon: Docker engine'in çalıştığı arka plan işlemidir. Docker Daemon, container'ları oluşturur, yönetir ve çalıştırır. Docker Daemon, ayrıca container'lar arasında iletişim sağlar ve container'lar arasında network oluşturur.
+
+        -Docker Client: Docker komutlarının çalıştırıldığı ve Docker Daemon ile iletişim kurduğu bileşendir. Docker client, Docker Daemon'a REST API aracılığıyla erişir ve Docker Daemon tarafından geri dönen yanıtları kullanıcıya gösterir.
+
+        -Docker Registry: Docker container'ların depolandığı ve dağıtıldığı bileşendir. Docker Registry, container'ların yerel olarak depolandığı veya bulut tabanlı olarak depolandığı bir yerdir. Docker Registry, ayrıca container'ların yönetilmesini ve güncellenmesini sağlar.
+
+    -Docker mimarisi şematik olarak şöyle görünebilir:
+
+        - Docker Client <----> Docker Daemon <----> Docker Registry
+
+        - Bu bileşenler arasındaki iletişim Docker API aracılığı ile sağlanır. Bu API aracılığı ile, Docker client komutlarını Docker Daemon'a gönderir ve Docker Daemon tarafından geri dönen cevabı, Docker client aracılığı ile kullanıcıya gösterir.
+
+- Docker file nedir
+    -Docker file, 
+    
+    - Docker container'ların nasıl oluşturulduğunu tanımlayan bir metin dosyasıdır. Docker file, container'ların oluşumunu ve çalışmasını sağlamak için gerekli olan tüm ayarları ve bağımlılıkları içerir. Docker file, ayrıca container içinde çalışacak olan komutları ve dosyaları da içerebilir.
+
+    - Bir seri komut satırı komutlarından oluşur ve her komut, container'ın oluşumunun bir aşamasını tanımlar. Örneğin, Docker file içinde, container içinde hangi işletim sistemi kullanılacağı, hangi paketlerin yükleneceği, hangi dosyaların kopyalanacağı gibi ayarlar yapılabilir.
+
+    - Docker engine tarafından okunur ve container oluşturulurken kullanılır. Örneğin, bir Docker file kullanarak, container oluştuktan sonra içinde çalışacak uygulamanın nasıl başlatılacağı, hangi portların açılacağı, uygulamanın çalışması için gerekli olan environment değişkenleri gibi ayarlar yapılabilir.
+
+    - Microservices yapılarında veya büyük ölçekli dağıtımlarda kullanılmaktadır. Bu filelar sayesinde uygulama ve onun gerektirdiği sistem bileşenleri aynı şekilde test edilebilir, dağıtılabilir ve yönetilebilir.
+
+
+
+
+-Dockerfile komutlarını 
+Dockerfile komutları, container'ların oluşumunu ve çalışmasını sağlamak için gerekli olan tüm ayarları ve bağımlılıkları tanımlar. Aşağıda Dockerfile komutlarının bazı örnekleri ve açıklamaları verilmiştir:
+
+    - FROM: Container'ın kullanacağı işletim sistemi veya başka bir container'ın imagini belirtir.
+    - RUN: Container içinde çalıştırılacak komutları belirtir.
+    - CMD: Container çalıştırıldığında çalıştırılacak komutları belirtir.
+    - LABEL: Container'a ek bilgi eklemek için kullanılır.
+    - EXPOSE: Container'ın açık olduğu portları belirtir.
+    - ENV: Container içinde kullanılacak environment değişkenlerini belirtir.
+    - ADD: Container içine dosya veya dizin eklemek için kullanılır.
+    - COPY: Container içine dosya veya dizin kopyalamak için kullanılır.
+    - ENTRYPOINT: Container çalıştırıldığında çalıştırılacak komutları belirtir ve CMD komutlarına ek bir komut olarak çalıştırılır.
+    - USER: Container içinde çalışacak kullanıcının adını belirtir.
+    - WORKDIR: Container içinde çalışacak komutların çalışacağı dizini belirtir.
+    - ONBUILD: Bu komut, container'ın oluşturulduğu anlamına gelecek bir trigger oluşturur.
+
+- Docker hub nedir
+    
+    -Docker Hub, Docker container'ların depolandığı ve dağıtıldığı bir online platformdur. Docker Hub, container'ların yerel olarak depolandığı veya bulut tabanlı olarak depolandığı bir yerdir. Docker Hub, ayrıca container'ların yönetilmesini ve güncellenmesini sağlar.
+    
+    -Docker Hub, ayrıca bir container registry olarak da adlandırılır ve container'ların yayınlandığı, paylaşıldığı ve indirildiği bir yerdir. Docker Hub, ayrıca container'ların oluşturulduğu veya güncellendiği zaman otomatik olarak container'ların dağıtılmasını sağlar.
+    
+    -Docker Hub, ücretsiz ve ödemeli hesaplar sunar. Ücretsiz hesaplar, sınırlı depolama alanı ve aylık indirme sınırı sunarken, ödemeli hesaplar daha fazla depolama alanı ve aylık indirme sınırı sunar.
+    
+    -Docker Hub, ayrıca birçok açık kaynaklı projeler için container'ların barındırıldığı ve kullanılması için önerilen yerdir. Bu sayede, kullanıcılar, açık kaynaklı projelerin container'larını kolayca indirebilir ve kullanabilir.
+    
+    -Docker Hub, ayrıca birçok ek hizmeti de sunar,örneğin, container'ların otomatik olarak oluşturulduğu ve güncellendiği bir sistem, container'ların test edilmesi ve canlıya alınması için bir sistem ve daha birçok hizmet.
+
+- DockerHub Komutlar listesi
+
+    - docker login : "docker login" komutunu kullanarak Docker Hub'a oturum açabilirsiniz. Örnek olarak "docker login -u myusername -p mypassword" komutunu kullanabilirsiniz.
+    
+    - docker push : "docker push" komutunu kullanarak container'ı Docker Hub'a yayınlayabilirsiniz. Örnek olarak "docker push myusername/mycontainer:latest" komutunu kullanabilirsiniz, burada "myusername" kullanıcı adınız, "mycontainer" yayınlamak istediğiniz container adı ve "latest" container'ın sürümünü belirtir.
+    
+    - docker pull : "docker pull" komutunu kullanarak Docker Hub'dan container indirebilirsiniz. Örnek olarak "docker pull myusername/mycontainer:latest" komutunu kullanabilirsiniz, burada "myusername" yayınlayan kullanıcının adı, "mycontainer" indirmek istediğiniz container adı ve "latest" container'ın sürümünü belirtir.
+    
+    - docker search : "docker search" komutunu kullanarak Docker Hub'da arama yapabilirsiniz. Örnek olarak "docker search mysql" komutunu kullanabilirsiniz, bu komut mysql ile ilgili container'ları listeler.
+    
+    - docker logout : "docker logout" komutunu kullanarak Docker Hub'dan oturum kapatabilirsiniz. Örnek olarak "docker logout" komutunu kullanabilirsiniz
+    
+    - docker tag : "docker tag" komutunu kullanarak container veya image için yeni bir etiket oluşturabilirsiniz. Örnek olarak "docker tag myimage myusername/myimage:v1.0" komutunu kullanabilirsiniz, burada "myimage" mevcut image'ın adı, "myusername" kullanıcı adınız ve "myimage:v1.0" oluşturduğunuz etiketi belirtir.
+    
+    - docker rmi : "docker rmi" komutunu kullanarak Docker Hub'da yayınlanmış olan image'ı silebilirsiniz. Örnek olarak "docker rmi myusername/myimage" komutunu kullanabilirsiniz, burada "myusername" kullanıcı adını
+
+- Docker vs code da kullanabileceğim terminal docker komutları listesi
+Docker komutlarını Visual Studio Code'da kullanmak için öncelikle "Docker" eklentisini kurmanız gerekir. Bu eklenti, VS Code içinde Docker komutlarını çalıştırmak için gerekli olan arayüzü sağlar. Aşağıda Visual Studio Code içinde kullanabileceğiniz bazı Docker komutlarının listesi verilmiştir:
+    - docker ps: Çalışan container'ları listeler.
+    - docker build : Belirtilen Dockerfile kullanarak container oluşturur. "docker build . " bu yöntem bulunduğunduğu dizinde çalıştırma işlem sağlar fakat -t ile bildirirsek container ismini ve tagını bildiririz "docker build -t hello-world:1 ."
+    - docker ps -a : Çalışan ve Çalışmayan tüm containerları gösterir 
+    - docker images: Oluşturulmuş olan container imagelarını listeler.
+    - docker run : Belirtilen container'ı çalıştırır.
+    - docker start : Belirtilen container'ı başlatır.
+    - docker stop : Belirtilen container'ı durdurur.
+    - docker rm : Belirtilen container'ı siler.
+    - docker rm -f : force kuvveti ile containerı siler (docker rm -f 5d7) id ile bildirmek gerek
+    - docker image -rm : Belirtilen imagi siler 
+    - docker logs : Belirtilen container'ın loglarını görüntüler.
+    - docker exec : Belirtilen container içinde komut çalıştırır.
+    - docker push : Belirtilen container'ı Docker Hub'a yayınlar.
+    - docker tag : Container için yeni bir etiket oluşturur.
+    - docker inspect : Container veya image hakkında detaylı bilgi verir.
+    - docker network : Docker ağlarını yönetir.
+    - docker volume : Docker volume'larını yönetir.
+    - docker system prune: Kullanılmayan tüm container'ları, imageları, volume'ları ve network'leri siler.
+    - docker stats : Container'ların çalışma durumlarını ve performans verilerini görüntüler.
+    - docker port : Container'ın hangi portlarını host'a açtığını görüntüler.
+    - docker top : Container içinde çalışan processleri listeler.
+    - docker diff : Container içinde yapılan değişiklikleri listeler.
+    - docker cp : Dosya veya dizinleri container içinde veya dışında kopyalar.
+    - docker save : Container veya image'ı bir dosyaya kaydeder.
+    - docker load : Kaydedilmiş olan container veya image'ı yükler.
+    - docker pause : Container'ın çalışmasını durdurur.
+    - docker unpause : Container'ın çalışmasını devam ettirir.
+    - docker wait : Container'ın bitmesini bekler.
+    - docker history : Container veya image'ın geçmişini görüntüler.
+    - docker tag : Container veya image için yeni bir etiket oluşturur.
+    - docker version : Docker sürüm bilgisini görüntüler.
+    
+
+
+
