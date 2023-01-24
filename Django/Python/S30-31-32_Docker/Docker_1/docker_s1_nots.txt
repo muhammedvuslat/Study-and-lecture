@@ -92,10 +92,10 @@ Dockerfile komutları, container'ların oluşumunu ve çalışmasını sağlamak
 - Docker vs code da kullanabileceğim terminal docker komutları listesi
 Docker komutlarını Visual Studio Code'da kullanmak için öncelikle "Docker" eklentisini kurmanız gerekir. Bu eklenti, VS Code içinde Docker komutlarını çalıştırmak için gerekli olan arayüzü sağlar. Aşağıda Visual Studio Code içinde kullanabileceğiniz bazı Docker komutlarının listesi verilmiştir:
     - docker ps: Çalışan container'ları listeler.
-    - docker build : Belirtilen Dockerfile kullanarak container oluşturur. "docker build . " bu yöntem bulunduğunduğu dizinde çalıştırma işlem sağlar fakat -t ile bildirirsek container ismini ve tagını bildiririz "docker build -t hello-world:1 ."
+    - docker build : Belirtilen Dockerfile kullanarak image oluşturur. "docker build . " bu yöntem bulunduğunduğu dizinde çalıştırma işlem sağlar fakat -t ile bildirirsek image ismini ve tagını bildiririz "docker build -t hello-world:1 ."
     - docker ps -a : Çalışan ve Çalışmayan tüm containerları gösterir 
     - docker images: Oluşturulmuş olan container imagelarını listeler.
-    - docker run : Belirtilen container'ı çalıştırır.
+    - docker run : Belirtilen container'ı oluşturur ve ve çalıştırır.
     - docker start : Belirtilen container'ı başlatır.
     - docker stop : Belirtilen container'ı durdurur.
     - docker rm : Belirtilen container'ı siler.
