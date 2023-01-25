@@ -21,12 +21,12 @@ services: # kaç tane app varsa ve dockerize edilecek ise services alanı altın
     ports: # harici:dahili bağlantı noktaları
       - 8000:8000
     restart: on-failure # restart olma işlemi fail durumunda restart et.
+    depends_on: # ilk çalıştırmanın seçimini sağlar backenden de önce pgdb çalıştır
+      - pgdb
     volumes: # containerlar içerisinde etkilişim sağlar ve container başlatılıp durdurulduğunda dataların silinmesini önleyerek kaldığı yerden devam eder
       # - ./backend/db.sqlite3:/backend/db.sqlite3 #! artık postgreSQL kullancağımız için bunu yazmamıza gerek kalmadı
       #! localde bulunan ./backend/db.sqlite3 dosyasını : container içerisindeki /backend/db.sqlite3 dosyasına kullan
       - ./backend:/backend #! yapılan değişiklikleri sistemi kapatıp açmadan uygulamamızı sağlar
-    depends_on: # ilk çalıştırmanın seçimini sağlar backenden de önce pgdb çalıştır
-      - pgdb
   pgdb:
     #! postgreSQL için bir services oluşturacağız (pgdb isimi farketmez)
     image: postgres:13-alpine #! docker hubdan hangi image kullanmak istersek seçeceğiz
