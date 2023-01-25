@@ -1,4 +1,5 @@
 # version: "3.9" # opsiyonel özellik belirtilmez ise son versyonu kullanır
+#! Çalışma sırası satır yazımına bağlı değil depends_ona göredir pgdb > backend > frontend sırasıyla çalışacaktır
 
 services: # kaç tane app varsa ve dockerize edilecek ise services alanı altında toplanır
   frontend:
@@ -11,7 +12,7 @@ services: # kaç tane app varsa ve dockerize edilecek ise services alanı altın
     depends_on: # ilk çalıştırmanın seçimini sağlar frontenden önce backendi çalıştır
       - backend
     volumes:
-      - ./frontend:/frontend
+      - ./frontend:/frontend #!yapılan değişiklikleri sistemi kapatıp açmadan uygulamamızı sağlar
 
   backend:
     # container_name: backend # optional (default:key)
@@ -21,8 +22,29 @@ services: # kaç tane app varsa ve dockerize edilecek ise services alanı altın
       - 8000:8000
     restart: on-failure # restart olma işlemi fail durumunda restart et.
     volumes: # containerlar içerisinde etkilişim sağlar ve container başlatılıp durdurulduğunda dataların silinmesini önleyerek kaldığı yerden devam eder
-      - ./backend/db.sqlite3:/backend/db.sqlite3
+      # - ./backend/db.sqlite3:/backend/db.sqlite3 #! artık postgreSQL kullancağımız için bunu yazmamıza gerek kalmadı
       #! localde bulunan ./backend/db.sqlite3 dosyasını : container içerisindeki /backend/db.sqlite3 dosyasına kullan
+      - ./backend:/backend #! yapılan değişiklikleri sistemi kapatıp açmadan uygulamamızı sağlar
+    depends_on: # ilk çalıştırmanın seçimini sağlar backenden de önce pgdb çalıştır
+      - pgdb
+  pgdb:
+    #! postgreSQL için bir services oluşturacağız (pgdb isimi farketmez)
+    image: postgres:13-alpine #! docker hubdan hangi image kullanmak istersek seçeceğiz
+    volumes:
+      - pg_data:/var/lib/postgresql/data/ #! pg_dataya oluşturulan volum ün kaydedileceği alan yazılır (standartdır)
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=docker_django
+      # container içerisinden database için kurulum esnasında bir user oluşturmamız sağlar ve bunu daha sonrasında .env de bildireceğiz aynı normal backend tasarlarken postgreSQL de user oluşturduğumuz ve daha sonrasında bunu bildirdiğimiz gibi.
+      # environment: kısmı ile veritabanı için gerekli olan ortam değişkenleri belirlenir. Bu ortam değişkenleri veritabanının nasıl çalıştırılacağını ve nasıl yapılandırılacağını belirtir. Burada kullanılan ortam değişkenleri:
+      # POSTGRES_USER=admin : veritabanının kullanıcı adını belirlenir.
+      # POSTGRES_PASSWORD=123 : veritabanının şifresi belirlenir.
+      # POSTGRES_DB=docker_django : veritabanının adı belirlenir.
+      # Bu bilgiler okunduğunda, compose komutu ile bu hizmet başlatıldığında, postgres:13-alpine sürümünde bir veritabanı oluşacak ve kullanıcı adı 'admin', şifre '123', veritabanı adı 'docker_django' olacaktır.
+volumes:
+  pg_data: #! pgdb'nin volümünü kaydedebilmesi karşılık gelen volumes oluşturacağız
+
 # $ docker compose up # compose çalıştır.
 # $ docker compose up -d --build # compose daemon aç ve tekrar build et.
 # $ docker compose down # compose kapat.
