@@ -1,0 +1,122 @@
+-Docker compose nedir 
+    Docker Compose, çok kapsamlı Docker uygulamalarını tanımlamak ve çalıştırmak için kullanılan bir araçtır. Geliştiriciler, uygulamanın hizmetlerini, ağlarını ve hacimlerini tek bir "docker-compose.yml" dosyasında tanımlayabilir ve daha sonra uygulamadaki tüm hizmetleri tek bir komutla başlatabilir veya durdurabilirler. Bu, uygulamanın bağımlılıklarını ve yapılandırmasını kolayca yönetmenizi, geliştirme, test veya dağıtım için hızlı bir şekilde uygulamayı başlatmanızı veya durdurmanızı sağlar.
+
+- .yml(YAML) Nedir
+    YAML (YAML Ain't Markup Language) bir metin tabanlı dosya formatıdır. YAML dosyaları genellikle veri serileştirmek, yapılandırma dosyaları oluşturmak veya API istekleri ve cevapları arasında veri alışverişi yapmak için kullanılır. YAML dosyaları, XML veya JSON gibi diğer veri serileştirme dillerinden daha okunaklı ve daha kolay yazılabilir olması nedeniyle, yapılandırma dosyaları oluşturmak için sıklıkla tercih edilir. Örnek olarak, Docker Compose kullanırken, yml dosyasına tanımladığınız servisler, networkler, volume vb bilgileri içerir.
+
+- json ile yml tablo halinde örneklemesi  
+    Aşağıda JSON ve YAML formatlarını kullanarak aynı veriyi serileştirmenin örneklerini görebilirsiniz:
+
+JSON:
+
+{
+  "name": "John Smith",
+  "age": 30,
+  "address": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip": "12345"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "555-555-5555"
+    },
+    {
+      "type": "work",
+      "number": "555-555-5555"
+    }
+  ]
+}
+YAML:
+
+name: John Smith
+age: 30
+address:
+  street: 123 Main St
+  city: Anytown
+  state: CA
+  zip: 12345
+phoneNumbers:
+- type: home
+  number: 555-555-5555
+- type: work
+  number: 555-555-5555
+YAML, JSON'dan daha okunaklı ve yazılabilir olmasının yanı sıra, JSON'da kullandığınız tırnak işaretlerini kullanmaz ve anahtarlar ve değerler arasında bir sütun bırakmaz. Ayrıca, JSON'da her düzey için noktalı virgül kullanmanız gerekirken, YAML'da bu zorunluluk yoktur.
+
+- Docker-compose.yml dosyası için açıklamalı örneklendirme
+    Docker Compose kullanarak çalıştırmak istediğimiz uygulamanız için "docker-compose.yml" dosyası oluşturabilirsiniz. Bu dosya, uygulamanızda kullanacağınız tüm hizmetleri, ağları ve hacimleri tanımlar. Aşağıda örnek bir "docker-compose.yml" dosyasının içeriği verilmiştir:
+
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=production
+    volumes:
+      - "./web:/app"
+    command: python manage.py runserver 0.0.0.0:8000
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+    volumes:
+      - "./db:/var/lib/postgresql/data"
+networks:
+  default:
+    driver: bridge
+Bu dosyada:
+
+- version: compose dosyasının versiyonu belirlenir, yukarıda 3 versiyonu kullanılmıştır.
+
+- services: uygulamada kullanılacak hizmetler belirlenir, burada web ve db hizmeti olarak belirlenmiştir.
+
+- web: hizmetinde build ile proje için gerekli olan yapının nasıl oluşturulduğu, ports ile hangi portların açılacağı, environment ile kullanılacak ortam değişkenleri, volumes ile hangi dizinlerin dahil edildiği ve command ile hizmetin nasıl başlatılacağı belirlenir.(appler bildirirlir bu projede backend ve frontend olarak bildirilir)
+
+- db: hizmetinde ise image ile kullanılacak olan container'ın hangi versiyonu, environment ile kullanılacak ortam değişkenleri, volumes ile hangi dizinlerin dahil edildiği belirlenir.
+
+- networks: hizmetler arasındaki ağların nasıl oluşturulduğu belirlenir. default ağı bridge driver ile oluşturulduğu belirtilmiştir.
+Bu dosya okunduğunda, compose komutu ile belirtilen hizmetlerin, ağların, volumes'ların ve kullanılacak ortam değişkenlerinin nasıl oluşturulduğu ve çalıştırılacağı bilinmektedir.
+
+- Volumes: Docker Compose kullanarak çalıştırdığınız container'lar arasında veri paylaşımını sağlar. Bu veri paylaşımı, container'lar arasındaki dosya sistemi paylaşımına dayanır ve container'lar arasında dosya ve dizinleri paylaşmak için kullanılır.
+
+Volumes, container'lar arasındaki veri paylaşımının yanı sıra, container'daki verilerin dış dünya ile paylaşılmasını veya dış dünyadan verilerin container'a aktarılmasını da sağlar. Örnek olarak, bir web uygulaması container'ındaki statik dosyaları, bir dizin olarak host makinenizde paylaşabilirsiniz veya bir veritabanı container'ının veritabanı dosyalarını, host makinenizde saklamak isteyebilirsiniz. Bu sayede container kapatıldığında veriler kaybolmaz ve yeni container açıldığında verilerin yine kullanılması sağlanır.
+
+"docker-compose.yml" dosyasında, volumes bölümünde container ile host arasındaki dizinlerin nasıl eşleştirileceği belirtilir. Örneğin, - "./web:/app" bu ifade ile host makinenizdeki ./web dizini, container içerisindeki /app dizinine eşitlenir. Bu sayede container içerisinde /app dizinine yapılan değişiklikler, host makinenizdeki ./web dizininde de yansıtılır ve aynı şekilde host makinenizdeki ./web dizinindeki değişiklikler container içerisindeki /app dizininde de yansıtılır.
+
+- Projemizde kullandığımız image ve environment örneği özeti
+
+    pgdb:
+        image: postgres:13-alpine 
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=123
+            - POSTGRES_DB=docker_django
+
+- Bu kod bloğu, Docker Compose kullanarak çalıştırmak istediğiniz bir veritabanı hizmeti için tanımlanmıştır. Özellikle, "pgdb" adında bir veritabanı hizmeti oluşturulmuştur.
+
+- image: postgres:13-alpine kısmı ile kullanılacak olan veritabanı container'ının hangi sürümünün kullanılacağı belirlenir. Burada "postgres:13-alpine" sürümü kullanılmıştır, bu sürüm Alpine Linux üzerinde inşa edilmiş PostgreSQL veritabanının 13 sürümüdür.
+
+- environment: kısmı ile veritabanı için gerekli olan ortam değişkenleri belirlenir. Bu ortam değişkenleri veritabanının nasıl çalıştırılacağını ve nasıl yapılandırılacağını belirtir. Burada kullanılan ortam değişkenleri:
+
+    POSTGRES_USER=admin : veritabanının kullanıcı adını belirlenir.
+    POSTGRES_PASSWORD=123 : veritabanının şifresi belirlenir.
+    POSTGRES_DB=docker_django : veritabanının adı belirlenir.
+    Bu bilgiler okunduğunda, compose komutu ile bu hizmet başlatıldığında, postgres:13-alpine sürümünde bir veritabanı oluşacak ve kullanıcı adı 'admin', şifre '123', veritabanı adı 'docker_django' olacaktır.
+
+- Aynı düzlemde data yapımız backend içerisinden olduğundan dolayı  .env içerisinde de aynı tanımlamalar yapılır.
+(backend/.env)
+    SECRET_KEY= 3483209852*10239ewfsf§djfnr32c#£$#£§
+    SQL_DATABASE = docker_django
+    SQL_USER = admin
+    SQL_PASSWORD = 123
+    SQL_HOST = pgdb
+    SQL_PORT = 5432
+        
+
+      
+      
