@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import Product
+from django.utils import timezone
 
 class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapacaksak classa onun ismini veririz ve admin.ModelAdmin'i çağırırız
     
-    list_display = ("name", "create_date", "is_in_stock", "update_date") #! Product modelinin hangi fieldslarının(sütun olarak) görüneceğini bildirdiğimz alan !!list_display değişkeni kullanıldığında models.py daki def __str__ metodunu sadece admin panelde olmak üzerine ezecektir.!!
+    list_display = ("name", "create_date", "is_in_stock", "update_date", "added_days_ago" ) #! Product modelinin hangi fieldslarının(sütun olarak) görüneceğini bildirdiğimz alan !!list_display değişkeni kullanıldığında models.py daki def __str__ metodunu sadece admin panelde olmak üzerine ezecektir.!! added_days_ago sonradan kendimiz oluşturduğumuz bir metod olup aiağıda detayları mevcuttur
     list_editable = ("is_in_stock",) #! Bu değişken, admin panelinde veritabanı modellerinin listelenmesi sırasında listeleme sayfasındaki alanların düzenlenmesini sağlar.Bu değişken ile, kullanıcının her satır için ayrı ayrı açmasına gerek kalmadan, direk olarak düzenleme yapması sağlanabilir, ek olarak fields ın edit edilebilmesi için displayde ekli yani görüntülenebiliyor olması gerekli   ("name" bu alan da kullanmak için default olarak gelen detay linkini "name" üzerinden alıp başka bir fieds a bildirmemiz gerekli)
     # list_display_links = ("create_date", ) #! Bu değişken, admin panelinde veritabanı modellerinin listelenmesi sırasında hangi alanların "detaylı görünüm" sayfasına yönlendireceğini belirler
     list_filter = ("is_in_stock", "create_date") #! Bu değişken, admin panelinde veritabanı modellerinin listeleme sayfasında filtreleme yapmasını sağlar (sağ tarafta filtreleme alanını gçrebilirsiniz)
@@ -32,13 +33,16 @@ class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapa
     actions = ("is_in_stock", ) #! Bu değişken, admin panelinde veritabanı modelleri için özel işlemler yapmasını sağlar. Örneğin, kullanıcıların birden fazla kaydı seçerek arka planda işlem yapmasını sağlar. Örneğin, kullanıcılar seçilen kayıtları silmek için bir işlem yapabilir. Ayrıca, kullanıcılar tarafından oluşturulan özel işlemlerde kullanılabilir. Bu işlemler, modeladmin sınıfının içinde tanımlanır ve admin panelinde görünür.
 
     def is_in_stock(self, request, queryset): #! Panelde seçtiğimz ürünle querySet olarak gelecek
+        # print(queryset) #! Terminal çıktısı panelde seç ve dene
+        #?<QuerySet [<Product: Aaron Davenport>, <Product: Alex Hill>]>
         count = queryset.update(is_in_stock=True) #! Seçilen querysetlerin is_in_stockları True olarak update edilecek ve bu ürün stokta var olarak güncellenmiş olacak
         self.message_user(request, f"{count} çeşit ürün stoğa eklendi") #! işlem sonrasında gösterilecek mesaj
         
     is_in_stock.short_description = 'İşaretlenen ürünleri stoğa ekle' #! Bu alanda işlem ismini belirtiyoruz
 
-
-
+    def added_days_ago(self, product): #! Bu şekilde panelde kendi metodlarımızı oluşturup algoritmalar kurabiliriz product argüman olarak düşün ve değişebileceğini bil
+        fark = timezone.now() - product.create_date
+        return fark.days
 
 
 
