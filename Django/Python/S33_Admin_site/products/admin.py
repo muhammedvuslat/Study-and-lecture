@@ -1,10 +1,16 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product, Review
 from django.utils import timezone
 
+class ReviewInline(admin.TabularInline): #! Reviewlar içerisinde productların göründüğü gibi productlar içerisinde de reviewların görünmesini sağlamak için ek olarak aynı işlevi gören fakat görüneme sahip olan StackedInline da TabularInline yerine kullanılabilinir 
+    model = Review #! Model seçimi Review modelim için
+    extra = 1 #! product altına ekleyebiliceğim yorum için 1 adet boş extra alan için
+    classes = ('collapse',) #! açık kapalı 
+    # min_num = 3
+    # max_num = 20
 class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapacaksak classa onun ismini veririz ve admin.ModelAdmin'i çağırırız
     
-    list_display = ("name", "create_date", "is_in_stock", "update_date", "added_days_ago" ) #! Product modelinin hangi fieldslarının(sütun olarak) görüneceğini bildirdiğimz alan !!list_display değişkeni kullanıldığında models.py daki def __str__ metodunu sadece admin panelde olmak üzerine ezecektir.!! added_days_ago sonradan kendimiz oluşturduğumuz bir metod olup aiağıda detayları mevcuttur
+    list_display = ("name", "create_date", "is_in_stock", "update_date", "added_days_ago","how_many_reviews" ) #! Product modelinin hangi fieldslarının(sütun olarak) görüneceğini bildirdiğimz alan !!list_display değişkeni kullanıldığında models.py daki def __str__ metodunu sadece admin panelde olmak üzerine ezecektir.!! added_days_ago sonradan kendimiz oluşturduğumuz bir metod olup aiağıda detayları mevcuttur
     list_editable = ("is_in_stock",) #! Bu değişken, admin panelinde veritabanı modellerinin listelenmesi sırasında listeleme sayfasındaki alanların düzenlenmesini sağlar.Bu değişken ile, kullanıcının her satır için ayrı ayrı açmasına gerek kalmadan, direk olarak düzenleme yapması sağlanabilir, ek olarak fields ın edit edilebilmesi için displayde ekli yani görüntülenebiliyor olması gerekli   ("name" bu alan da kullanmak için default olarak gelen detay linkini "name" üzerinden alıp başka bir fieds a bildirmemiz gerekli)
     # list_display_links = ("create_date", ) #! Bu değişken, admin panelinde veritabanı modellerinin listelenmesi sırasında hangi alanların "detaylı görünüm" sayfasına yönlendireceğini belirler
     list_filter = ("is_in_stock", "create_date") #! Bu değişken, admin panelinde veritabanı modellerinin listeleme sayfasında filtreleme yapmasını sağlar (sağ tarafta filtreleme alanını gçrebilirsiniz)
@@ -14,6 +20,8 @@ class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapa
     list_per_page = 25 #! pagination ayarlamsı yapılabilinir
     date_hierarchy = "update_date" #! üst alanda tarih sıralamsı gerçekleştirecek
     # fields = (('name', 'slug'), 'description', "is_in_stock") #!her bir ürün detayına girildiğinde karşımıza çıkan ekran için görünümünü ayarlamamızı sağlayacaktır fieldset kullandığımız zaman bunu kullanamayız 
+    inlines = (ReviewInline,) #!  ana model nesnesi ile ilişkili olan model nesnelerinin aynı sayfada düzenlenmesine veya görüntülenmesine izin verir. Bu, başka bir sayfaya gitmek yerine ana model nesnesi ile ilişkili nesneleri aynı sayfada düzenleyebilmenizi sağlar. Bu özellik genellikle foreign key veya one-to-many ilişkisi olan modeller için kullanılır. Örneğin bir Product modeli ile ilişkili olan bir Review modeli için Product modelini düzenlerken, aynı sayfada Review modellerini de düzenleyebilirsiniz veya görüntüleyebilirsiniz.
+
     fieldsets = ( #! Bu değişken, admin panelinde veritabanı modelleri için formların nasıl düzenlenmesini istediğimizi belirler
         (None, { #! Bölüm başlıklarını yazıldığı alan none yazıldığında başlıksız olarak göreceğiz
             "fields": ( #! hangi alanları gösterileceği
@@ -42,12 +50,30 @@ class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapa
 
     def added_days_ago(self, product): #! Bu şekilde panelde kendi metodlarımızı oluşturup algoritmalar kurabiliriz product argüman olarak düşün ve değişebileceğini bil
         fark = timezone.now() - product.create_date
-        return fark.days
+        return fark.days #! Bu metodu models.py da oluşturabiliriz 
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'created_date', 'is_released')
+    list_per_page = 50
+    raw_id_fields = ('product',) #! Bu özellik, yönetici ekleme/değiştirme görünümlerinde ham ID arabirimi olarak görüntülenmesi gereken alanların bir listesidir. Ham ID arabirimi, yönetici arayüzünde veritabanındaki bir kaydın ID'sini gösteren basit bir metin kutusudur. Bu özellik, veritabanındaki kayıtlar arasında hızlı bir şekilde gezinebilmenizi ve kayıtları seçebilmenizi sağlar. Bu özellik yönetici arayüzünde bir alanın foreign key alanı olarak işaretlenmesi durumunda kullanılabilir.Yorum detayı için tıkladığımızda sayfa üzerinde bulunan ürün ismi ve id sinin bulunduğu alan 
+    
 
 
 
 
+
+
+
+
+
+
+
+
+
+#? Product model için register işlemler
 admin.site.register(Product , ProductAdmin) #! Oluşturduğumuz clası bu alana ekliyoruz
 admin.site.site_title = "Admin Title!" #! Sekme başlığı
 admin.site.site_header = "Admin Portal" #! Sayfa  başlığı sol üst
 admin.site.index_title = "Welcome Admin Portal" #! admin girişindeki karşılama yazısı 
+#? Review model için register işlemler
+admin.site.register(Review, ReviewAdmin)
