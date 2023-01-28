@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'grappelli', #! Grapelli Packages en üste olması gerekli
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products',
+    #! Third Party
+    'django_admin_listfilter_dropdown', #! field bazında filtreleme
+    'rangefilter', #! Tarih bzında filtreleme
+    'import_export', #! İmport export
+    'ckeditor', #! Text Editör paketi
+
 ]
 
 MIDDLEWARE = [
@@ -134,5 +141,13 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-#! İmage Settings
 
+
+#! RichText Editors(ckeditor) Extra özelleştirme-ayarlama
+CKEDITOR_CONFIGS = {
+        'default' : {
+            'toolbar' : 'full',
+            'height' : 700,
+            'width' : 1000
+        }
+    }

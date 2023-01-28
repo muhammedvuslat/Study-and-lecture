@@ -2,6 +2,13 @@ from django.contrib import admin
 from .models import Product, Review , Category
 from django.utils import timezone
 from django.utils.safestring import mark_safe #! image işlemleri için html kodu gönderildiğinde dışarıdan değil güvenli olarak developer tarafından gönderildğini belirtmek için 
+#Todo List-Filter-Dropdown(Field bazlı)
+from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter, DropdownFilter
+#Todo Admin-Date_Rang_filter(Tarih bazlı)
+from rangefilter.filters import DateRangeFilter, DateTimeRangeFilter
+#Todo İmport-Export Packages
+from import_export.admin import ImportExportModelAdmin
+from products.resources import ReviewResource
 
 class ReviewInline(admin.TabularInline): #! Reviewlar içerisinde productların göründüğü gibi productlar içerisinde de reviewların görünmesini sağlamak için ek olarak aynı işlevi gören fakat görüneme sahip olan StackedInline da TabularInline yerine kullanılabilinir 
     model = Review #! Model seçimi Review modelim için
@@ -14,7 +21,10 @@ class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapa
     list_display = ("name", "create_date", "is_in_stock", "update_date", "added_days_ago","how_many_reviews","bring_img_to_list" ) #! Product modelinin hangi fieldslarının(sütun olarak) görüneceğini bildirdiğimz alan !!list_display değişkeni kullanıldığında models.py daki def __str__ metodunu sadece admin panelde olmak üzerine ezecektir.!! added_days_ago sonradan kendimiz oluşturduğumuz bir metod olup aşağıda detayları mevcuttur, how_many_reviews mdoels de oluşturduğumuz bir metoddur bu alanda çağırabiliriz
     list_editable = ("is_in_stock",) #! Bu değişken, admin panelinde veritabanı modellerinin listelenmesi sırasında listeleme sayfasındaki alanların düzenlenmesini sağlar.Bu değişken ile, kullanıcının her satır için ayrı ayrı açmasına gerek kalmadan, direk olarak düzenleme yapması sağlanabilir, ek olarak fields ın edit edilebilmesi için displayde ekli yani görüntülenebiliyor olması gerekli   ("name" bu alan da kullanmak için default olarak gelen detay linkini "name" üzerinden alıp başka bir fieds a bildirmemiz gerekli)
     # list_display_links = ("create_date", ) #! Bu değişken, admin panelinde veritabanı modellerinin listelenmesi sırasında hangi alanların "detaylı görünüm" sayfasına yönlendireceğini belirler
-    list_filter = ("is_in_stock", "create_date") #! Bu değişken, admin panelinde veritabanı modellerinin listeleme sayfasında filtreleme yapmasını sağlar (sağ tarafta filtreleme alanını gçrebilirsiniz)
+    # list_filter = ("is_in_stock", "create_date") #! Bu değişken, admin panelinde veritabanı modellerinin listeleme sayfasında filtreleme yapmasını sağlar (sağ tarafta filtreleme alanını gçrebilirsiniz)
+
+    list_filter = ("is_in_stock", ("create_date", DateTimeRangeFilter)) #? Bu değişken ThirdParty packages olup create_date'in field seçimi DateTimeField olduğundan dolayı DateTimeRangeFilter seçilmiştir
+
     ordering = ("name",) #! Default olarak hangi fields ile sıralanacağını belirler
     search_fields = ("name",) #! Bu değişken, admin panelinde veritabanı modellerinin arama yapmasını sağlar. Örneğin, search_fields = ('name', 'description') gibi bir tanımda, name ve description alanlarına göre arama yapılabilir. Bu arama alanı admin panelinin üst tarafında görünür ve kullanıcılar belirli bir kaydın name ve description alanlarına göre arayabilir. Bu değişken birden fazla alan için kullanılabilir.
     prepopulated_fields = {'slug' : ('name',)}#! Bu değişken, admin panelinde veritabanı modelleri için formların otomatik olarak doldurulmasını sağlar. Örneğin, prepopulated_fields = {'slug': ('name',)} gibi bir tanımda, name alanının değerini kullanarak otomatik olarak slug alanını doldurur(url sonuna eklenir). Bu özellik genellikle SEO amaçlı kullanılır ve kullanıcının manuel olarak girmesi gereken alanların otomatik olarak doldurulmasını sağlar.!(Otomatik model oluşturmalarında yani toplu data girişlerinde değil sadece admin panelde ekleme yapıldığında gerçekleşir)!
@@ -73,12 +83,22 @@ class ProductAdmin(admin.ModelAdmin): #! Product model ile ilgili costumize yapa
         return mark_safe("******")
         #! html kodları i.erisinde minimalize etmek için boyutlandırmasını yapıyoruz
     bring_img_to_list.short_description = "product image" #! Listelenme ekranında resimlerin olduğu sütunun bağlığını Değiştirmek için
+
     
 
-class ReviewAdmin(admin.ModelAdmin):
+    
+
+class ReviewAdmin(ImportExportModelAdmin):
     list_display = ('__str__', 'created_date', 'is_released')
     list_per_page = 50
     raw_id_fields = ('product',) #! Bu özellik, yönetici ekleme/değiştirme görünümlerinde ham ID arabirimi olarak görüntülenmesi gereken alanların bir listesidir. Ham ID arabirimi, yönetici arayüzünde veritabanındaki bir kaydın ID'sini gösteren basit bir metin kutusudur. Bu özellik, veritabanındaki kayıtlar arasında hızlı bir şekilde gezinebilmenizi ve kayıtları seçebilmenizi sağlar. Bu özellik yönetici arayüzünde bir alanın foreign key alanı olarak işaretlenmesi durumunda kullanılabilir.Yorum detayı için tıkladığımızda sayfa üzerinde bulunan ürün ismi ve id sinin bulunduğu alan 
+    list_filter = ( #! List filter drop down paketi sağ tarafta filtereleme ekranı verecektir
+        ('product', RelatedDropdownFilter), #! Field'lar bazında filtreleme seçilir doğru seçim resmi dokümanı kontrol et
+        ('is_released', DropdownFilter),        
+    )
+    resource_class = ReviewResource
+
+
     
 
 

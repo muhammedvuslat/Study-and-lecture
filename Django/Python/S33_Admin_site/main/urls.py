@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 #! imageları admin panelde görebilmek için image staticlerine endpoint oluşturuyoruz
 urlpatterns = [
+    # path('grappelli/', include('grappelli.urls')), # Settinge.py > INSTALLED_APPS listesinde olduğu gibi grappelli URLS üstte olacak
     path('admin/', admin.site.urls),
 ]
 
