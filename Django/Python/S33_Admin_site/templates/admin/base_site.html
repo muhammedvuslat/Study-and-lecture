@@ -1,0 +1,55 @@
+{% extends 'admin/base.html' %} {% load static %} {% block branding %}
+<div class="myDiv">
+  <img
+    src="{% static  'images/logo.png' %}"
+    style="height: 50px; width: 50px"
+    alt=""
+  />
+  <h1 id="head">VBurada Admin Site</h1>
+</div>
+{% endblock %} {% block extrastyle %}
+<style>
+  #header {
+    height: 50px;
+    background: #b34c10;
+    color: #fff;
+  }
+
+  #branding h1 {
+    color: #fff;
+  }
+
+  a:link,
+  a:visited {
+    color: #136627;
+  }
+
+  div.breadcrumbs {
+    background: #b34c10;
+    color: #136627;
+  }
+
+  div.breadcrumbs a {
+    color: #333;
+  }
+
+  .module h2,
+  .module caption,
+  .inline-group h2 {
+    background: #b34c10;
+  }
+
+  .button,
+  input[type="submit"],
+  input[type="button"],
+  .submit-row input,
+  a.button {
+    background: #136627;
+    color: #fff;
+  }
+  div.myDiv {
+    display: flex;
+    align-items: center;
+  }
+</style>
+{% endblock %}
