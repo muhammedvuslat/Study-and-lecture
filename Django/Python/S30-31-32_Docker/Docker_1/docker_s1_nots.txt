@@ -17,7 +17,7 @@
         -Bir işletim sistemi üzerinde çalışan bir daemon olarak tasarlandı ve Docker komutlarının çalışmasını sağlar. 
         -Container'ları oluşturmak, çalıştırmak, durdurmak, saklamak ve yönetmek gibi temel işlemleri gerçekleştirir.
 
-- Docker mimarisini şematize edermisin
+- Docker mimarisi nasıldır ?
     -Docker mimarisi, üç temel bileşenden oluşur:
         -Docker Daemon: Docker engine'in çalıştığı arka plan işlemidir. Docker Daemon, container'ları oluşturur, yönetir ve çalıştırır. Docker Daemon, ayrıca container'lar arasında iletişim sağlar ve container'lar arasında network oluşturur.
 
