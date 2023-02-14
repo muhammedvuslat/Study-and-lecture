@@ -1,0 +1,18 @@
+Başlangıç komutları
+- python3 -m venv env
+- source env/bin/activate
+- pip install django
+- pip freeze
+- pip freeze > requirements.txt
+- dajngo-admin startproject main .
+
+App komutları
+- python3 manage.py startapp students
+- python3 manage.py migrate
+- python3 managepy runsever
+
+
+
+Açıklamalar
+- Mainde bulunan temlates klasöründe genelde base yapılar (navbar-footer) kurulur ve app içerisindende bulunan yapılar kendi app klasöründe oluşturulur.
+- Değişlikleri gösterebilmek ve karışmaması adına home.html kopyalanıp home copy.html olarak kalmıştır.

@@ -16,14 +16,20 @@ def home(request):
     #! renderın 3 parametresi olarak context gelir ve templatemizi göndermek istediğimiz valueları buraya tanımlarız.
     #! Key value yapısı şeklinde kurulur
     context = {
-        'tanım': 'Back - End Developer',
+        'tanım': 'fullstack developer',
         'desc': 'This is a description',
         'number': 1111,
         'list1': ['a', 1, 'b', ['c', 2]],
         'dict1': {
             'key1': 'value1',
             'key2': 'value2'
-        }
+        },
+        'dict_list': [
+            {'name': 'Dawid', 'age': 22},
+            {'name': 'Tony', 'age': 32},
+            {'name': 'Clara', 'age': 25},
+        ]
+
     }
 
     return render(request, 'students/home.html', context)
@@ -32,4 +38,5 @@ def home(request):
 #! İçerisinde /Users/muhammedvuslatcevik/Desktop/Clarusway /work/Study-and-lecture/Django/Python/S45_Django_Template/students/templates/Students/home.html
 {{ variables }} = değişkenleri çağırırız 
 {% command %} = python kodlarında daki if leri forları bu yapı içerisine yazıyoruz.
+| işareti iser filtreleme gerçekleştirir
 '''
