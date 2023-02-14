@@ -57,8 +57,8 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'templates'], #! base de yani main dizinde bulunan templates klasörünü belirtiriz
+        'APP_DIRS': True, #! students app içerisinde bir templates klasörü oluşturulursa  bu klasördekileri home.html dosyasını otomatik olarak görür. 
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

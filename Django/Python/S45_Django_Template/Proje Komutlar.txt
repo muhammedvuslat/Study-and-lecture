@@ -10,3 +10,4 @@ App komutları
 - python3 manage.py startapp students
 - python3 manage.py migrate
 - python3 managepy runsever
+
