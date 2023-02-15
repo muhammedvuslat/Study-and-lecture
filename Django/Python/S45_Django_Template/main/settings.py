@@ -118,7 +118,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' #! Django template de sadece bu kod olursa ilk önce ilgili app'in altında bulunan static klasöründeki static dosyalarını okur
+STATICFILES_DIRS = [ #! Eğer bu kod bloğu var ise ilk olarak ana dizindeki static klasörü altında bulunan static dosyalarına bakar daha sonra app içerisindeki static klasöründe bulunan static dosyalarına bakar
+    BASE_DIR / 'static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

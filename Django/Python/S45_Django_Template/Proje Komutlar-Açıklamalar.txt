@@ -11,11 +11,14 @@ App komutları
 - python3 manage.py migrate
 - python3 managepy runsever
 
-
-
 Açıklamalar
 - Mainde bulunan temlates klasöründe genelde base yapılar (navbar-footer) kurulur ve app içerisindende bulunan yapılar kendi app klasöründe oluşturulur.
 - Değişlikleri gösterebilmek ve karışmaması adına home.html kopyalanıp home copy.html olarak kalmıştır.
 - Yeni home.html bulunan herçeyi silip base.html den inherit et dedik
 - Daha sonra base.html de block body uygulamsına geçiyoruz/ base.html de block body arasında yazdıklarımız gözükmeyecek sadece heme.htnl de block body arasında yazdıklarımız base.html deki block bodyde yazılmış gibi gözükecek
 - Yani genel anlamda base de block tag içerisinde tanımlanan bir içerik başka bir html sayfasında block tagi içerisinde bir içerik belirtilmez ise gösterilir.Başka bit html sayfasında tanımlanan block tag içerisinde içerik olursa başka html deki görüntülenir. tabi base sayfasının extend edilmesi gereklidir.
+
+
+NOT: 
+- Static ve Templates dosyalarıın ayrılmasının sebebini genel ve özel olarak düşünebiliriz ana dizinde bulunan Static ve Template dosyarları temel düzenlemeler ve temel olarak hepsini kapsayan bir yapı helinde olup app ler içerisinde bulunan Static ve Template dosyaları ise ilgili app yada belirtilen html sayfasına göre yapılandırılmış olanlardır ve temelde bulunan dosyalara göre önceliklidir. 
+- Static dosya işlemleinde html sayfalarına link eklemensine ek olarak sayfada static dosyalarının olacağını bildirmek için {% load static %} eklenmesi gereklidir.
