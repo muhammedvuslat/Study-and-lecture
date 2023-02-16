@@ -7,4 +7,4 @@ class Students(models.Model):
     image = models.ImageField(upload_to='students', blank=True)
 
     def __str__(self):
-        return f'{self.number}{self.first_name}'
+        return f'{self.first_name} {self.number}'

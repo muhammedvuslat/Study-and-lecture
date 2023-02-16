@@ -122,6 +122,8 @@ STATIC_URL = 'static/' #! Django template de sadece bu kod olursa ilk önce ilgi
 STATICFILES_DIRS = [ #! Eğer bu kod bloğu var ise ilk olarak ana dizindeki static klasörü altında bulunan static dosyalarına bakar daha sonra app içerisindeki static klasöründe bulunan static dosyalarına bakar
     BASE_DIR / 'static'
 ]
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

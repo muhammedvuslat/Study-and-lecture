@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Students
 
 #! Yöntem 1 Aşağıdaki metod views içerinde oluşturulan templates yapısı
 '''def home (request): #! Home sayfasında gösterimi için Httpresponse içerisinde html kodu yazıyoruz bu kodu students > urls.py içerisinde tanımlama yapacğız
@@ -13,8 +14,8 @@ from django.http import HttpResponse
 
 
 def home(request):
-    #! renderın 3 parametresi olarak context gelir ve templatemizi göndermek istediğimiz valueları buraya tanımlarız.
-    #! Key value yapısı şeklinde kurulur
+    #! renderın 3. parametresi olarak context gelir ve templatemizi göndermek istediğimiz valueları buraya tanımlarız.
+    #! Key value yapısı şeklinde kurulur(contextin ismi değiştirilebilinir fakat bestpractises context dir)
     context = {
         'tanım': 'fullstack developer',
         'desc': 'This is a description',
@@ -33,6 +34,15 @@ def home(request):
     }
 
     return render(request, 'students/home.html', context)
+
+def student_list(request):
+    students = Students.objects.all()
+    context = {
+        'students': students
+    }
+
+    return render(request, 'students/student_list.html', context)
+
 
 '''
 #! İçerisinde /Users/muhammedvuslatcevik/Desktop/Clarusway /work/Study-and-lecture/Django/Python/S45_Django_Template/students/templates/Students/home.html
