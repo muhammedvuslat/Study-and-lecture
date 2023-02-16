@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Students
 from .forms import StudentsForm
@@ -54,13 +54,42 @@ def student_add(request):
 
         if form.is_valid():
             form.save()
-            return redirect('student_list')
+            return redirect('student_list') #! Url de name ile belirtmiş olduğumuz alana yönendirir.
     context = {
         'form':form
 
     }
 
     return render(request, 'students/student_add.html', context)
+
+def student_update(request, id):
+    student = get_object_or_404(Students, id=id)
+    form = StudentsForm(instance=student)
+
+    if request.method == 'POST':
+        form = StudentsForm(request.POST, request.FILES,instance=student) #! fıles ve post işleminişn detaylarını görmek için terminal print edebilirsin.
+
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')
+        
+    context = {
+        'form':form
+    }
+
+    return render(request, 'students/student_update.html', context)
+
+def student_detail(request, id):
+    student = get_object_or_404(Students, id=id)
+    context = {
+        'student': student
+    }
+
+    return render(request, 'students/student_detail.html', context)
+
+
+def student_delete():
+    pass
 
 
 '''

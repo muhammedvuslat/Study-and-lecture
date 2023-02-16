@@ -29,10 +29,12 @@ Açıklamalar
 - views.py da def student_add metodu oluşturduk ve bu metodu render edeceğimiz template sayfasını templates>students içerisinde oluşturduk(student_add.html)
 - oluşturduğumuz sayfada add işlemi için form tag kullandık ve form içerisinde method kullanarak POST işlemi yapacağımız belirttik
 - student_add için urls de adres oluşturduk
+-- student_update içinde student_add işlemlerinin aynı yapısını ve işlemlerini tekrarladık
+-- student_detail içinde student_update işlemlerinin aynı yapısını ve işlemlerini tekrarladık
 
 
 
-
+ 
 
 
 NOT: 
