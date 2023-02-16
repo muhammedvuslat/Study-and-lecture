@@ -71,7 +71,7 @@ def student_update(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect('student_list')
+            return redirect('student_list') #! Urls.py da bildirdiğimiz name='student_list' bu noktadan çağırabilirz 
         
     context = {
         'form':form
