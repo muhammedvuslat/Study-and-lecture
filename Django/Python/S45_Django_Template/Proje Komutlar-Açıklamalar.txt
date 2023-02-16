@@ -21,8 +21,14 @@ Açıklamalar
 - Yeni home.html bulunan herçeyi silip base.html den inherit et dedik
 - Daha sonra base.html de block body uygulamsına geçiyoruz/ base.html de block body arasında yazdıklarımız gözükmeyecek sadece heme.htnl de block body arasında yazdıklarımız base.html deki block bodyde yazılmış gibi gözükecek
 - Yani genel anlamda base de block tag içerisinde tanımlanan bir içerik başka bir html sayfasında block tagi içerisinde bir içerik belirtilmez ise gösterilir.Başka bit html sayfasında tanımlanan block tag içerisinde içerik olursa başka html deki görüntülenir. tabi base sayfasının extend edilmesi gereklidir.
-- 
+- Form yapısı için models.py da model, students >templates > Students > student_list.html oluşturuldu.
+- views.py içerisinde def student_list metodu oluşturuldu co text içerisinde value bildirildi
+- student_list içerisinde valuelerin çağırımları yapıldı ve urls.py da views dan student_list import edildi list adına adres oluşturuldu.
 
+- Form yapısını kullanabilmek için aynı serializer gibi görevi olan forms.py ilgili app içerisine eklendi.
+- views.py da def student_add metodu oluşturduk ve bu metodu render edeceğimiz template sayfasını templates>students içerisinde oluşturduk(student_add.html)
+- oluşturduğumuz sayfada add işlemi için form tag kullandık ve form içerisinde method kullanarak POST işlemi yapacağımız belirttik
+- student_add için urls de adres oluşturduk
 
 
 

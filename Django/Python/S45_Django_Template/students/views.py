@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Students
+from .forms import StudentsForm
 
 #! Yöntem 1 Aşağıdaki metod views içerinde oluşturulan templates yapısı
-'''def home (request): #! Home sayfasında gösterimi için Httpresponse içerisinde html kodu yazıyoruz bu kodu students > urls.py içerisinde tanımlama yapacğız
+'''def home (request):
+#! Home sayfasında gösterimi için Httpresponse içerisinde html kodu yazıyoruz bu kodu students > urls.py içerisinde tanımlama yapacğız
     return HttpResponse('<h1>Hello World</h1>')'''
 
 #! Yöntem 2 render metodunu kullanrak request oluşturulur ve renderın 2 parametresi olarak templates klasöründe oluşturduğumuz home.html(dosyamızın adı) bildirilir
@@ -42,6 +44,23 @@ def student_list(request):
     }
 
     return render(request, 'students/student_list.html', context)
+
+def student_add(request):
+    form = StudentsForm()
+    if request.method == 'POST': #! post işleminde print'i aktif ederek terminalden neler gönderildiğini kontrol edebilirz
+        print('POST :', request.POST)
+        print('fıles :', request.FILES)
+        form = StudentsForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')
+    context = {
+        'form':form
+
+    }
+
+    return render(request, 'students/student_add.html', context)
 
 
 '''
