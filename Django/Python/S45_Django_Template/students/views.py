@@ -88,8 +88,17 @@ def student_detail(request, id):
     return render(request, 'students/student_detail.html', context)
 
 
-def student_delete():
-    pass
+def student_delete(request, id):
+    student = get_object_or_404(Students, id=id)
+
+    if request.method == 'POST':
+        student.delete() #! student_delete.html sayfasından gelen form içerisinde method="POST" olarak yes'e basıldığında bu alana post gelir ve student.post() ile silinir
+        return redirect('student_list')
+
+    context = {
+        'student': student
+    }
+    return render(request, 'students/student_delete.html', context)
 
 
 '''
