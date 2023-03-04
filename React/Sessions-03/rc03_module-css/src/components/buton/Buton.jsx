@@ -5,7 +5,7 @@ const Buton = ({ btn }) => {
   return (
     <div className={ButonStyle.title}>
       <button className={ButonStyle["btn-blue"]}>{btn}</button>
-      {/* kabap case okuyamadağıı için "btn-blue" köşeli parantez içerisinde kullanıldı*/}
+      {/* style.module.css dosyasında belirtilen .btn-module kebap case olup jsz alanında kebap case okuyamadağı için "btn-blue" köşeli parantez içerisinde kullanıldı*/}
     </div>
   );
 };
