@@ -1,5 +1,3 @@
-Next.js Interview çalışmaları
-
 Next js kurulum komutları
 - npx create-next-app@latest (Son Version) 
 - yarn create next-app --experimental-app
