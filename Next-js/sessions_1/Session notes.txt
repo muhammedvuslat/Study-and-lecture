@@ -1,0 +1,97 @@
+Next.js Interview çalışmaları
+
+Next js kurulum komutları
+- npx create-next-app@latest (Son Version) 
+- yarn create next-app --experimental-app
+- ppm create next-app --experimental-app
+Next js development aşamsın da live server için
+- yarn jet dev
+- npm next dev
+ 
+ 
+	*Statik(sabit) Rootlar 
+Statik rootlar sayfa url'nin değişmediği rootlardır örnekler olarak hakkımızda, iletişim gibi sayfalar verilebilinir
+	- app klasörü altın da oluşturulacak olan sayfa için yeni bir klasör oluşturulur ve klasör içerisinde page.jsx ile bir component oluşturulur bu sayede ilgili url route oluşturulmuş olur.
+
+
+	*Dinamik(değişken) Rootlar
+Dinamik rotalar, bir web uygulamasında değişken parametreleri kullanarak URL'leri belirlemek ve işlemek için kullanılan bir mekanizmadır. Geleneksel sabit rotaların aksine, dinamik rotalar, URL'de belirli bir yere gelebilecek değişken verileri temsil etmek için kullanılır.
+	- Next js de dinamik root kullanımında app altına yeni bir klasör oluşturulur ve klasör ismi [] ile sarmallanır ve içerisine yine statik rootlarda olduğu gibi page.jsx dosyası oluşturulur.
+	- Dinamik rootlarda url de / sonrasına ne yazılırsa bize oluşturduğumuz dinamik sayfayı gösterir
+	- fonksiyonda bu değişken render edildiğinde sayfada görülmesi için params destructuring edilir ve component içerinde çağırılarak görüntülenebilinir
+	** Dinamik root da kullanılan 3 farklı yapı bulunmaktadır
+	1- Generating Static Params (Statik Params Oluşturma):
+	generateStaticParams fonksiyonu, dinamik rota segmentleriyle birlikte kullanılarak, istek zamanında değil derleme zamanında statik olarak rota oluşturmayı sağlar. Bu fonksiyon, genellikle verileri almak için bir API isteği kullanır ve alınan verileri rota parametreleri olarak döndürür. Bu sayede, dinamik rota içerikleri derleme sırasında oluşturulur ve istek zamanında dinamik olarak oluşturulması gereken rota sayısını azaltır.
+	2- Catch-all Segments (Tüm Segmentler):
+	Dinamik segmentler, bir elips işareti (...) içeren köşeli parantezlerle genişletilebilir. Örneğin, app/shop/[...slug]/page.js rotası, /shop/clothes yanı sıra /shop/clothes/tops, /shop/clothes/tops/t-shirts gibi tüm alt segmentlere uyan bir rotayı temsil eder. Bu şekilde, birden çok segment içeren dinamik rota yapısı oluşturabilirsiniz.
+	3- Optional Catch-all Segments (Opsiyonel Tüm Segmentler):
+	Catch-all segmentler, iki kez köşeli parantez içine alınarak opsiyonel hale getirilebilir. Örneğin, app/shop/[[...slug]]/page.js rotası, /shop yanı sıra /shop/clothes, /shop/clothes/tops, /shop/clothes/tops/t-shirts gibi tüm alt segmentlere uyan bir rotayı temsil eder. Ancak, opsiyonel catch-all segmentlerde, parametre olmadan da rota eşleşebilir. Yani, /shop rotası da eşleşir ve params objesi boş olur.
+
+
+	*Route Grouping
+Next.js'de "Route Grouping" veya "Rota Gruplama", belirli rotaları bir araya getirerek kod organizasyonunu ve yönetimini kolaylaştıran bir özelliktir. Bu özellik, benzer özelliklere veya işlevlere sahip rotaları bir grup içinde düzenlemek için kullanılır.
+
+Rota Gruplama, pages dizini altında alt dizinler oluşturarak gerçekleştirilir. Bu alt dizinler, bir rota grubunu temsil eder ve aynı önek veya klasör adına sahip rotaları içerir. Bu sayede, ilgili rotalar bir arada tutulabilir ve kodu daha düzenli hale getirebilirsiniz.
+
+Örneğin, bir blog uygulaması düşünelim. Blog yazılarını listelemek için /blog rotası, tek bir yazıyı göstermek için /blog/[slug] rotası ve yeni bir yazı oluşturmak için /blog/new rotası olsun. Bu rotaları gruplamak için aşağıdaki yapıyı kullanabilirsiniz:
+
+---------------------
+Copy code
+- pages
+  - blog
+    - index.js
+    - [slug].js
+    - new.js
+---------------------
+
+
+Yukarıdaki yapıda, blog alt dizini içerisinde index.js, [slug].js ve new.js dosyaları yer alır. Bu dosyalar, sırasıyla /blog, /blog/[slug] ve /blog/new rotalarını temsil eder.
+
+Bu şekilde rotaları gruplayarak, ilgili kodları bir arada tutabilir ve kod organizasyonunu kolaylaştırabilirsiniz. Rota Gruplama, özellikle büyük ölçekli uygulamalarda veya birden çok benzer özellik içeren projelerde kodu daha sürdürülebilir hale getirmek için kullanışlı bir yöntemdir.
+
+	*Link Compoonents
+Next.js'deki Link bileşeni, tarayıcıda sayfalar arasında gezinme yapmayı sağlayan bir bileşendir. Bu bileşen, sayfalar arasında geçiş yaparken sayfa yenilenmesini engeller ve performansı artırır.
+
+Link bileşeni, <Link> etiketi içinde hedef sayfanın URL'sini belirtirken kullanılır. Örneğin:
+
+---------------------
+import Link from 'next/link';
+
+const MyComponent = () => {
+  return (
+    <div>
+      <Link href="/about">
+        <a>About</a>
+      </Link>
+    </div>
+  );
+};
+---------------------
+
+Yukarıdaki örnekte, <Link> bileşeni /about URL'sine yönlendiren bir bağlantı oluşturur. Tıklama yapıldığında sayfa yenilenmez, Next.js otomatik olarak ilgili sayfayı ön yükleme işlemi yapar ve içeriği hızlı bir şekilde sunar.
+
+Link bileşeni, aşağıdaki parametreleri alabilir:
+
+	- href (zorunlu): Yönlendirilecek hedef sayfanın URL'sini belirtir. Bu parametre bir dize veya nesne olabilir. Nesne olarak belirtilirse, query parametreleri veya hash değeri eklemek için kullanılabilir.
+	- as (isteğe bağlı): URL'nin görüntülenmesini istediğiniz değeri belirtir. Özellikle dinamik rotalarda kullanılır.
+	- replace (isteğe bağlı): replace parametresi true olarak ayarlanırsa, yeni sayfa geçişinde geçmişi değiştirir ve geri düğmesi kullanıldığında önceki sayfaya gitmez.
+	- scroll (isteğe bağlı): scroll parametresi false olarak ayarlanırsa, sayfa geçişinde kaydırma işlemi yapmaz.
+Bu parametreler, Link bileşeninin sayfa geçişlerini yönlendirmek ve özelleştirmek için kullanılır. Link bileşeni, Next.js'deki gezinme işlemlerinde sıklıkla kullanılan bir bileşendir ve performansı artırarak kullanıcı deneyimini iyileştirir.
+
+	- Link bileşeni, href parametresini farklı şekillerde kullanabilir:
+
+	Dize olarak kullanım: href parametresi, hedef sayfanın URL'sini doğrudan bir dize olarak alabilir. Örneğin:
+	---------------------
+	<Link href="/blog">
+	  <a>Blog</a>
+	</Link>
+	---------------------
+
+	Nesne olarak kullanım: href parametresi, URL'ye query parametreleri veya hash değeri eklemek için bir nesne olarak da belirtilebilir. Örneğin:
+	---------------------
+	<Link href={{ pathname: '/blog', query: { page: 2 } }}>
+	  <a>Blog - Page 2</a>
+	</Link>
+	---------------------
+
+	Yukarıdaki örnekte, query nesnesi sayesinde /blog?page=2 URL'sine yönlendirme yapılır.
