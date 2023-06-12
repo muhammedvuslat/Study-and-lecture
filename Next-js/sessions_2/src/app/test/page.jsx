@@ -1,9 +1,16 @@
 import React from "react";
 
-export default function Test() {
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function TestRoute() {
+  await delay(3000);
   return (
     <div>
       <div>Test Page</div>
     </div>
   );
 }
+
+export default TestRoute;
