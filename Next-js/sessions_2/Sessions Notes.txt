@@ -1,0 +1,24 @@
+*App klasörü genel tanımı ve işlevi
+Bu özellik, uygulama kodunuzu ve componentsnizi düzenlemenizi sağlar ve aynı zamanda layoutlar, hata components ve yükleme components gibi bazı  özellikleri de beraberinde getirir.
+	- Daha iyi düzen: app klasörü, uygulama kodunuzu ve componentsnizi düzenlemeyi kolaylaştırır. İhtiyacınız olan kodu bulmak ve kullanmak daha kolay hale gelir.
+	- Daha iyi performans: app klasörü, yapılan HTTP isteklerinin sayısını azaltarak uygulamanızın performansını artırabilir.
+	- Daha iyi güvenlik: app klasörü, hassas verilere izinsiz erişimi engelleyerek uygulamanızın güvenliğini artırabilir.
+
+
+	- Page
+	Bir page, uygulamanızdaki farklı bir görünümü renderlayan bir React bileşenidir. Sayfalar, page.jsx adında dosyalarda tanımlanır. 
+	- Layout
+	Bir layout (layout), uygulamanızdaki birden fazla sayfa arasında ortak kod ve componentleri paylaşmanın bir yoludur. layoutler, app dizininde layout.jsx adında dosyalarda tanımlanır. Bir sayfa bir layouti içe aktardığında, Next.js otomatik olarak sayfa içeriğini layout componentiyle sarmalar. Bu, ortak başlık, altbilgi ve kenar çubuğu componentlerini tüm sayfalara kolayca eklemenizi sağlar.
+	- Default Dosyalar
+	Next.js, app dizininde birkaç default dosya içerir. Bu dosyaları uygulamanızın görünümünü ve işlevselliğini özelleştirmek veya ek işlevsellik eklemek için kullanabilirsiniz. default dosyalar şunları içerir:
+		- app.js - Bu dosya uygulamanızın giriş noktasıdır. Uygulama kodunuzu ve componentlerinizi yüklemekten sorumludur ve aynı zamanda yönlendirmeleri de yönetir.
+		- index.js - Bu dosya uygulamanızın ana giriş noktasıdır. Uygulamanızın başlangıç görünümünü renderlamaktan sorumludur.
+		- .env - Bu dosya ortam değişkenlerini saklamak için kullanılır.
+	- Loading components: Loading components, uygulamanız veri yüklenirken bir yüklenme göstergesi göstermek için kullanılır. Loading components, app klasöründe loading.jsx adlı dosyalarda tanımlanır.
+	- Not-found components: 404 components, var olmayan bir sayfaya erişmeye çalışan bir kullanıcıya 404 hata sayfasını göstermek için kullanılır. 404 components, app klasöründe 404.jsx adlı dosyalarda tanımlanır.
+	- error components: error components, uygulamanızda bir hata oluştuğunda bir error mesajı göstermek için kullanılır. error components, app klasöründe error.jsx adlı dosyalarda tanımlanır.
+	- Route components: Route components, uygulamanızdaki farklı rotalar için farklı içerikleri render etmek için kullanılır. Route components, app klasöründe [route].jsx adlı dosyalarda tanımlanır.
+	- Template components: Template components, uygulamanız için genel bir düzeni render etmek için kullanılır. Template components, app klasöründe template.jsx adlı dosyalarda tanımlanır.
+	- Head component HTML sayfasının <head> bölümünü özelleştirmek için kullanılan bir componentdir. head.jsx olarak yaratılır. Head componenti, sayfanın başlık, meta etiketleri, stil dosyaları, faviconlar ve diğer başlık içeriği gibi HTML başlık etiketlerini düzenlemek için kullanılır.
+	Head componentini kullanarak, her sayfanın başlık bilgisini ve diğer meta verilerini belirleyebilirsiniz. Özellikle SEO (Arama Motoru Optimizasyonu) için önemli olan meta etiketlerini ekleyebilir, stil dosyalarını ve faviconları belirtebilirsiniz.
+		-- Ek olarak yeni next.js versiyonlarında head.jsx yerine ilgili route yada bütün app klasörünü kapsayarak header taglarini ilgili page.jsx dosyasında barındırabiliriz.
