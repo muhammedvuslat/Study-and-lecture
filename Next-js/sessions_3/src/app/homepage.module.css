@@ -1,0 +1,12 @@
+.container {
+  padding: 24px;
+  background-color: burlywood;
+}
+
+.main-title {
+  color: darkcyan;
+}
+
+.body-title {
+  color: rgba(255, 68, 0, 0.633);
+}
