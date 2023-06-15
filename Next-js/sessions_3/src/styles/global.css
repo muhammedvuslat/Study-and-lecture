@@ -1,0 +1,9 @@
+body {
+  background-color: rgb(177, 176, 176);
+}
+
+h1 {
+  font-size: 64px;
+  color: purple;
+  /* global styles da renk bildirilmesine rağmen homepage.module.css de özel sınıf kullanılarak renk bildirildğinden dolayı bu alandaki renk tanımı CSS Sspecificity(override benzeri stil öncelik) nedeniyle geçersiz kılındı   */
+}
