@@ -1,0 +1,77 @@
+	*Module Css
+
+	-İlgili component yada app sayfasının buludunğu dizinde styles.module.css dosyası oluşturulur. İlgili css kodları yazılır ve next.js kodunda component yada taglerin className'inde obje olarak css class ları bildirilir
+	- styles.module.css sayfasının kullanılan sayfada import edilmesi gereklidir.
+
+	- İlk adım olarak, stil dosyalarınızı ".module.css" uzantısıyla kaydedin. Örneğin, "styles.module.css" gibi bir dosya oluşturun.
+
+	- Component dosyanıza stil dosyasını import edin:
+	---------------------
+		import styles from './styles.module.css';
+	---------------------
+	
+	- Component'ni JSX kodunda stil sınıflarını kullanmak için className yerine styles objesini kullan:
+	---------------------
+	<div className={styles.container}>
+ 		<h1 className={styles.title}>Merhaba, Dünya!</h1>
+  		<p className={styles.description}>Bu bir Next.js uygulamasıdır.</p>
+        <h2 className={styles["body-title"]}>Test Component content-2</h2>
+			(kebap case formatlarında h2 deki gibi erişim sağlanabilir)
+	</div>
+	---------------------
+	- Artık stil dosyalarındaki sınıflara JSX kodunuzda erişebilirsiniz. Örneğin, "container" ve "title" gibi sınıfları kullanarak bileşeninizi stilleyebilirsiniz.
+
+	- CSS dosyalarındaki sınıflar, bileşeninizin DOM hiyerarşisine özgü olarak oluşturulur ve stil çakışmalarını önlemek için otomatik olarak eşsiz bir isimlendirme alır.
+
+		*Global Css
+	- Next.js'de global CSS kullanımı, stil dosyalarını tüm uygulama genelinde paylaşmak için kullanılan bir yöntemdir.
+	- src yada ana dizinde styles adında bir klasör oluşturulur ve içerisinde konumlandırılır.
+
+	---------------------
+	body {
+  		background-color: rgb(177, 176, 176);
+	}
+
+	h1 {
+  		font-size: 64px;
+  		color: purple;
+	}
+	---------------------
+
+
+	- app klasöründe bulunan layout.jsx (yok ise oluşturulmalı) ne import edilir
+	- global css e ek olarak reset.css dosyası da styles dosyası içerisinde konumlandırılır ve aynı şekilde global.css dosyanın imprt edildiği layout.jsx dosyasına import edilir.(Hazır reset dosyası meyerweb reset internet sitesinden alınabilir)
+	---------------------
+	html,
+	body,
+	div,
+	span,
+	h1,
+	h2,
+	p,
+	ul,
+	li {
+  		margin: 0;
+  		padding: 0;
+  		border: 0;
+  		font-size: 100%;
+  		font: inherit;
+  		vertical-align: baseline;
+	}
+	---------------------
+	-* NOT: reset dosyaları her zaman diğer stil dosylarından önce import edilir.
+		
+		*Tailwind Css
+	- Kurulumu için 
+		- npm install -D tailwindcss postcss autoprefixer
+		- npx tailwindcss init -p
+	- (2) tailwind.config.js dosyasında next.js dokümanlarında olduğu gibi ilgili değişiklikleri sağlana
+	- (3) global.css dosyasında dokümanda ki gibi ilgili tailwind importlarını gerçekleştir, global.css dosyasını layout.jsx de import edilmiş olması gerektiğini unutma.
+	
+
+		*Styled Compoonents
+	- Kurulumu için	
+		- npm install styled-components(yarn add)
+		- Daha sonrasında next.js de app route styled-component kullanımı için olan registry sayfasını lib içerisine ekle ve ana page  sayfasını 'use client' olarak ayarla 
+			-* Eğer tailwind css ile kullanılacaksa tailwindconfig dosyasında bulunan plugin sayfasına styled component'i eklemeyi unutma.
+	Kullanımı ve kod yapısı normal styled components ile aynı 
