@@ -1,0 +1,31 @@
+	* Rendering nedir ? SSR(Server Side Routing) ve CSR(Client Side Routing) nedir ?
+	- Next.js'de "rendering" terimi, bir sayfanın sunucuda veya istemci tarafında nasıl oluşturulduğunu ifade eder. Next.js, iki farklı rendering yaklaşımı sunar: SSR (Sunucu Tarafında Render) ve CSR (İstemci Tarafında Render).
+
+	- SSR (Server Side Rendering), sunucu tarafında bir istemcinin talebine yanıt olarak sayfanın tamamen oluşturulduğu bir yaklaşımdır. Sunucu, sayfanın içeriğini oluşturur ve istemciye hazır bir HTML yanıtı gönderir. SSR kullanılırken, sayfa içeriği sunucu tarafında oluşturulduğu için, sayfa hızı ve arama motoru optimizasyonu gibi konularda avantaj sağlar. Next.js, SSR'i yerleşik olarak destekler ve sayfaları sunucu tarafında ön işleyebilir.
+		- app dizinine bulunan her dosya veya app dizininde bulunmayıp, app dizinindeki bir dosya tarafından kullanılan componentler aksi belirtilmediği sürece SSR'dır
+
+	- CSR (Client Side Rendering), istemci tarafında yani tarayıcıda sayfanın oluşturulduğu bir yaklaşımdır. İlk olarak, sunucu sadece boş bir HTML sayfasını gönderir ve tarayıcı bu sayfayı alırken JavaScript dosyalarını indirir ve çalıştırır. Daha sonra, JavaScript tarafından oluşturulan componentler aracılığıyla sayfa içeriği istemci tarafında dinamik olarak oluşturulur. CSR kullanılırken, sayfa içeriği istemci tarafında oluşturulduğu için, daha etkileşimli ve dinamik kullanıcı deneyimleri sağlayabilir.
+
+	- Next.js, varsayılan olarak SSR kullanır ve sayfaları sunucu tarafında ön işleyerek performans ve SEO avantajları sağlar. Ancak Next.js, dinamik ve etkileşimli sayfaların gerektiği durumlarda CSR'ı da destekler.('use client')
+	
+		*  SSR(Server Side Rendering) Notlar
+	- Bir componentin sadece server de render edilebilmesi için server-only kütüphanesinin yüklenmesi gerekir. 
+		- yarn add server-only 
+		- import 'server-only' ile import edilir ve component client render edilen bir component içerisinde çağrıldığında hata mesajı dönecektir.
+		
+		*  CSR(Client Side Rendering) Notlar
+	- React üzerinde kullanılan hook lar sadece client tarafında kullanılbildiğinden dolayı server side da kullanılmak istendğinde izin verilmeyecektir
+	- Dizindeki kodlarıda incelediğimizde page.jsx sayfasında bulunan message state'i ilk olarak 'ilk message' değerini alır ve daha sonra useEffect ile 'Değişen message' değerini alacaktır. Tarayıcıda incele > Network > Docs bölümden dosyaya baktığımızda Preview bölümünde message statinin sadece ilk halini görebiliriz. Bunun sebebi tarayıcının client da render edilen bir dosyayı sadece ilk halini alabilmeye zorlar alabildiğini alır değişimleri yansıtmayacaktır.
+		*  Static / Dynamic Rendering 
+	- Static Rendering:
+	Next.js'de Static Rendering, sayfaların derleme (build) zamanında önceden oluşturulduğu ve her istekte dinamik olarak yeniden oluşturulmadığı anlamına gelir. Bu yaklaşım, genellikle sayfaların içeriği veya verileri sık sık değişmeyen durumlarda kullanılır. Statik Oluşturma, performansı artırır ve sunucu tarafında önemli bir yükü azaltır. Oluşturulan sayfaları bir CDN (Content Delivery Network) üzerinden sunabilir ve hızlı erişim sağlayabilirsiniz.
+
+	- Dynamic Rendering :
+	Next.js'de Dynamic Rendering, sayfaların her istekte sunucu tarafında oluşturulduğu ve istemciye dinamik olarak iletilen bir HTML içeriği olduğu anlamına gelir. Bu yaklaşım, sayfaların içeriği veya verileri sık sık değişen durumlarda kullanılır. Her istekte sunucu tarafında oluşturulduğu için güncel verilere erişmek ve istemciye özelleştirilmiş içerik sunmak için kullanılabilir.
+
+	- Ek olarak
+		- Static rendering ettiğimiz sayfalar next.js tarafından build anında 1 kere render edilir daha sonrasında bize html sayfası şeklinde oluşturulur 
+		- Dynamic rendering ettiğimiz sayfalar bir parametreye bağlı olduğundan dolayı next.js build anında html değil js dosyası şeklinde oluşturulur bu nedenle her render da sayfa tekrar tekrar çalışacaktır.
+	
+		*İç İçe Server ve Client Component Yapısı
+	- İç içe geçmiş Server ve Client Component yapısını kullanarak, sayfalarınızda sunucu tarafında işlenmesi gereken kısımları sunucu componentleriyle oluşturabilir ve daha sonra istemci tarafında etkileşimli veya dinamik kısımları istemci componentleriyle yönetebilirsiniz. Bu sayede SSR avantajlarından yararlanırken aynı zamanda zengin bir istemci tarafı deneyimi sunabilirsiniz.
